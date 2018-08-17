@@ -60,11 +60,11 @@ class Product extends Abstract {
   }
 
   async pendingGoals(): Promise<Goal[]> {
-    return await Goal.find({ makerId: this.id, isCompleted: false });
+    return await Goal.find({ productId: this.id, isCompleted: false });
   }
 
   async completedGoals(): Promise<Goal[]> {
-    return await Goal.find({ makerId: this.id, isCompleted: true });
+    return await Goal.find({ productId: this.id, isCompleted: true });
   }
 }
 

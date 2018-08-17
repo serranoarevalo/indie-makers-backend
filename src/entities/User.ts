@@ -23,7 +23,7 @@ class User extends Abstract {
   fbId: string;
 
   @Column({ type: "text" })
-  bio: number;
+  bio: string;
 
   @OneToMany(type => Product, product => product.maker)
   products: Product[];
@@ -48,6 +48,14 @@ class User extends Abstract {
 
   get strike(): number {
     return 1;
+  }
+
+  async pendingGoals(): Promise<Goal[]> {
+    return await Goal.find({ makerId: this.id, isCompleted: false });
+  }
+
+  async completedGoals(): Promise<Goal[]> {
+    return await Goal.find({ makerId: this.id, isCompleted: true });
   }
 }
 
