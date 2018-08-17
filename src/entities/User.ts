@@ -1,29 +1,17 @@
-import bcrypt from "bcrypt";
 import { IsEmail } from "class-validator";
-import {
-  BaseEntity,
-  BeforeInsert,
-  BeforeUpdate,
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from "typeorm";
-
-const BCRYPT_ROUNDS = 10;
+import { Column, Entity, OneToMany, RelationCount } from "typeorm";
+import Abstract from "./Abstract";
+import Goal from "./Goal";
+import Product from "./Product";
 
 @Entity()
-class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ type: "text", nullable: false })
+class User extends Abstract {
+  @Column({ type: "text", nullable: true })
   @IsEmail()
   email: string;
 
-  @Column({ type: "text", nullable: false })
-  password: string;
+  @Column({ type: "text", unique: true })
+  username: string;
 
   @Column({ type: "text", nullable: false })
   firstName: string;
@@ -31,30 +19,35 @@ class User extends BaseEntity {
   @Column({ type: "text", nullable: false })
   lastName: string;
 
-  @CreateDateColumn()
-  createdAt: string;
+  @Column({ type: "text" })
+  fbId: string;
 
-  @UpdateDateColumn()
-  updatedAt: string;
+  @Column({ type: "text" })
+  bio: number;
+
+  @OneToMany(type => Product, product => product.maker)
+  products: Product[];
+
+  @RelationCount((user: User) => user.products, "products", queryBuilder =>
+    queryBuilder.andWhere("products.isLaunched = :isLaunched", {
+      isLaunched: true
+    })
+  )
+  launchedProductCount: number;
+
+  @OneToMany(type => Goal, goal => goal.maker)
+  goals: Goal[];
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  public comparePassword(password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
+  get profilePhoto(): string {
+    return `https://graph.facebook.com/${this.fbId}/picture?type=square`;
   }
 
-  @BeforeInsert()
-  @BeforeUpdate()
-  async savePassword(): Promise<void> {
-    if (this.password) {
-      const hashedPassword = await this.hashPassword(this.password);
-      this.password = hashedPassword;
-    }
-  }
-  private hashPassword(password: string): Promise<string> {
-    return bcrypt.hash(password, BCRYPT_ROUNDS);
+  get strike(): number {
+    return 1;
   }
 }
 

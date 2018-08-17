@@ -4,7 +4,7 @@ const connectionOptions: ConnectionOptions = {
   type: "postgres",
   database: process.env.DB_NAME,
   synchronize: true,
-  logging: true,
+  logging: false,
   entities: ["entities/**/*.*"],
   host: process.env.DB_ENDPOINT,
   port: 5432,
