@@ -1,4 +1,4 @@
-import { IsEmail } from "class-validator";
+import { IsEmail, IsUrl } from "class-validator";
 import { Column, Entity, OneToMany, RelationCount } from "typeorm";
 import Abstract from "./Abstract";
 import Goal from "./Goal";
@@ -18,6 +18,10 @@ class User extends Abstract {
 
   @Column({ type: "text", nullable: false })
   lastName: string;
+
+  @Column({ type: "text", nullable: true })
+  @IsUrl()
+  homepage: string;
 
   @Column({ type: "text" })
   fbId: string;
