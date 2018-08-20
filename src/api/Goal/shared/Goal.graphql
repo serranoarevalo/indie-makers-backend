@@ -1,0 +1,11 @@
+type Goal {
+  id: Int!
+  createdAt: String!
+  updatedAt: String
+  text: String!
+  isCompleted: Boolean!
+  makerId: Int!
+  maker: User
+  productId: Int!
+  product: Product
+}

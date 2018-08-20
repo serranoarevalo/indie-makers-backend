@@ -1,18 +1,46 @@
-type EmailSignInResponse {
+type Goal {
+  id: Int!
+  createdAt: String!
+  updatedAt: String
+  text: String!
+  isCompleted: Boolean!
+  makerId: Int!
+  maker: User
+  productId: Int!
+  product: Product
+}
+
+type Product {
+  id: Int!
+  createdAt: String!
+  updatedAt: String
+  name: String!
+  description: String!
+  isLaunched: Boolean!
+  needsHelp: Boolean!
+  isFeatured: Boolean!
+  website: String
+  logo: String
+  makerId: Int!
+  maker: User
+  goals: [Goal]
+  goalCount: Int!
+  pendingGoalCount: Int!
+  completedGoalCount: Int!
+  slug: String!
+  pendingGoals: [Goal]
+  completedGoals: [Goal]
+}
+
+type ConnectFBResponse {
   ok: Boolean!
   error: String
   token: String
+  new: Boolean!
 }
 
 type Mutation {
-  EmailSignIn(email: String!, password: String!): EmailSignInResponse!
-  EmailSignUp(email: String!, password: String!, firstName: String!, lastName: String!): EmailSignUpResponse!
-}
-
-type EmailSignUpResponse {
-  ok: Boolean!
-  error: String
-  user: User
+  ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
 }
 
 type GetMyProfileResponse {
@@ -27,11 +55,21 @@ type Query {
 
 type User {
   id: Int!
-  email: String!
-  password: String!
+  email: String
+  username: String
   firstName: String!
   lastName: String!
+  homepage: String
+  fbId: String!
+  bio: String
+  products: [Product]
+  launchedProductCount: Int!
+  goals: [Goal]
   fullName: String!
+  profilePhoto: String!
+  strike: Int!
+  pendingGoals: [Goal]
+  completedGoals: [Goal]
   createdAt: String!
   updatedAt: String
 }

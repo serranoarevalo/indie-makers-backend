@@ -8,15 +8,15 @@ import Product from "./Product";
 class User extends Abstract {
   @Column({ type: "text", nullable: true })
   @IsEmail()
-  email: string;
+  email: string | null;
 
-  @Column({ type: "text", unique: true })
+  @Column({ type: "text", unique: true, nullable: true })
   username: string;
 
-  @Column({ type: "text", nullable: false })
+  @Column({ type: "text" })
   firstName: string;
 
-  @Column({ type: "text", nullable: false })
+  @Column({ type: "text" })
   lastName: string;
 
   @Column({ type: "text", nullable: true })

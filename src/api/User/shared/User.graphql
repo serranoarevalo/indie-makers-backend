@@ -1,10 +1,20 @@
 type User {
   id: Int!
-  email: String!
-  password: String!
+  email: String
+  username: String
   firstName: String!
   lastName: String!
+  homepage: String
+  fbId: String!
+  bio: String
+  products: [Product]
+  launchedProductCount: Int!
+  goals: [Goal]
   fullName: String!
+  profilePhoto: String!
+  strike: Int!
+  pendingGoals: [Goal]
+  completedGoals: [Goal]
   createdAt: String!
   updatedAt: String
 }

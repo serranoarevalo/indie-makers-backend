@@ -1,0 +1,21 @@
+type Product {
+  id: Int!
+  createdAt: String!
+  updatedAt: String
+  name: String!
+  description: String!
+  isLaunched: Boolean!
+  needsHelp: Boolean!
+  isFeatured: Boolean!
+  website: String
+  logo: String
+  makerId: Int!
+  maker: User
+  goals: [Goal]
+  goalCount: Int!
+  pendingGoalCount: Int!
+  completedGoalCount: Int!
+  slug: String!
+  pendingGoals: [Goal]
+  completedGoals: [Goal]
+}

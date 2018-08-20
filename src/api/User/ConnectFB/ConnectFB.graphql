@@ -1,0 +1,15 @@
+type ConnectFBResponse {
+  ok: Boolean!
+  error: String
+  token: String
+  new: Boolean!
+}
+
+type Mutation {
+  ConnectFB(
+    firstName: String!
+    lastName: String!
+    email: String
+    fbId: String!
+  ): ConnectFBResponse!
+}

@@ -6,7 +6,7 @@ import User from "./User";
 
 @Entity()
 class Product extends Abstract {
-  @Column({ type: "text", unique: true })
+  @Column({ type: "text" })
   name: string;
 
   @Column({ type: "text" })
