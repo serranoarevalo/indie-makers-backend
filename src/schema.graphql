@@ -32,6 +32,16 @@ type Product {
   completedGoals: [Goal]
 }
 
+type CheckUsernameResponse {
+  ok: Boolean!
+  available: Boolean
+  error: String
+}
+
+type Query {
+  CheckUsername(username: String!): CheckUsernameResponse!
+}
+
 type ConnectFBResponse {
   ok: Boolean!
   error: String
@@ -41,16 +51,6 @@ type ConnectFBResponse {
 
 type Mutation {
   ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
-}
-
-type GetMyProfileResponse {
-  ok: Boolean!
-  error: String
-  profile: User
-}
-
-type Query {
-  GetMyProfile: GetMyProfileResponse!
 }
 
 type User {

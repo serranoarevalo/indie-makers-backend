@@ -1,0 +1,9 @@
+type CheckUsernameResponse {
+  ok: Boolean!
+  available: Boolean
+  error: String
+}
+
+type Query {
+  CheckUsername(username: String!): CheckUsernameResponse!
+}
