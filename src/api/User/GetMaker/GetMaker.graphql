@@ -1,0 +1,9 @@
+type GetMakerResponse {
+  ok: Boolean!
+  error: String
+  maker: User
+}
+
+type Query {
+  GetMaker(username: String!): GetMakerResponse!
+}

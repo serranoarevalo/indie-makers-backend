@@ -54,13 +54,13 @@ class User extends Abstract {
     return 1;
   }
 
-  async pendingGoals(): Promise<Goal[]> {
+  pendingGoals = async (): Promise<Goal[]> => {
     return await Goal.find({ makerId: this.id, isCompleted: false });
-  }
+  };
 
-  async completedGoals(): Promise<Goal[]> {
+  completedGoals = async (): Promise<Goal[]> => {
     return await Goal.find({ makerId: this.id, isCompleted: true });
-  }
+  };
 }
 
 export default User;

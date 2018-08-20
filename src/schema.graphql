@@ -40,6 +40,7 @@ type CheckUsernameResponse {
 
 type Query {
   CheckUsername(username: String!): CheckUsernameResponse!
+  GetMaker(username: String!): GetMakerResponse!
 }
 
 type ConnectFBResponse {
@@ -51,6 +52,12 @@ type ConnectFBResponse {
 
 type Mutation {
   ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
+}
+
+type GetMakerResponse {
+  ok: Boolean!
+  error: String
+  maker: User
 }
 
 type User {

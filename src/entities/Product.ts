@@ -59,13 +59,14 @@ class Product extends Abstract {
     return `${this.name.replace(" ", "-")}`;
   }
 
-  async pendingGoals(): Promise<Goal[]> {
-    return await Goal.find({ productId: this.id, isCompleted: false });
-  }
+  pendingGoals = async (): Promise<Goal[]> => {
+    const goals = await Goal.find({ productId: this.id, isCompleted: false });
+    return goals;
+  };
 
-  async completedGoals(): Promise<Goal[]> {
+  completedGoals = async (): Promise<Goal[]> => {
     return await Goal.find({ productId: this.id, isCompleted: true });
-  }
+  };
 }
 
 export default Product;
