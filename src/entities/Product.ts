@@ -21,7 +21,7 @@ class Product extends Abstract {
   @Column({ type: "boolean", default: false })
   isFeatured: boolean;
 
-  @Column({ type: "text", unique: true })
+  @Column({ type: "text", unique: true, nullable: true })
   @IsUrl()
   website: string;
 
@@ -59,14 +59,13 @@ class Product extends Abstract {
     return `${this.name.replace(" ", "-")}`;
   }
 
-  pendingGoals = async (): Promise<Goal[]> => {
-    const goals = await Goal.find({ productId: this.id, isCompleted: false });
-    return goals;
-  };
+  get pendingGoals() {
+    return this.goals.filter(goal => goal.isCompleted === false);
+  }
 
-  completedGoals = async (): Promise<Goal[]> => {
-    return await Goal.find({ productId: this.id, isCompleted: true });
-  };
+  get completedGoals() {
+    return this.goals.filter(goal => goal.isCompleted === true);
+  }
 }
 
 export default Product;

@@ -26,7 +26,7 @@ class User extends Abstract {
   @Column({ type: "text" })
   fbId: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   bio: string;
 
   @OneToMany(type => Product, product => product.maker)
@@ -39,7 +39,7 @@ class User extends Abstract {
   )
   launchedProductCount: number;
 
-  @OneToMany(type => Goal, goal => goal.maker)
+  @OneToMany(type => Goal, goal => goal.maker, { eager: true })
   goals: Goal[];
 
   get fullName(): string {
@@ -54,13 +54,13 @@ class User extends Abstract {
     return 1;
   }
 
-  pendingGoals = async (): Promise<Goal[]> => {
-    return await Goal.find({ makerId: this.id, isCompleted: false });
-  };
+  get pendingGoals() {
+    return this.goals.filter(goal => goal.isCompleted === false);
+  }
 
-  completedGoals = async (): Promise<Goal[]> => {
-    return await Goal.find({ makerId: this.id, isCompleted: true });
-  };
+  get completedGoals() {
+    return this.goals.filter(goal => goal.isCompleted === true);
+  }
 }
 
 export default User;
