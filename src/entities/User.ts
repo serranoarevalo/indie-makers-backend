@@ -39,7 +39,7 @@ class User extends Abstract {
   )
   launchedProductCount: number;
 
-  @OneToMany(type => Goal, goal => goal.maker, { eager: true })
+  @OneToMany(type => Goal, goal => goal.maker)
   goals: Goal[];
 
   get fullName(): string {

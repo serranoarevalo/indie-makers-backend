@@ -7,9 +7,12 @@ const resolver: Resolvers = {
     GetMaker: async (_, args: GetMakerQueryArgs): Promise<GetMakerResponse> => {
       const { username } = args;
       try {
-        const user = await User.findOne({
-          username
-        });
+        const user = await User.findOne(
+          {
+            username
+          },
+          { relations: ["goals"] }
+        );
         if (user) {
           return {
             ok: true,
