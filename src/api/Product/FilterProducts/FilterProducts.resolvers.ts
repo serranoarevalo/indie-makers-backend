@@ -12,34 +12,79 @@ const resolvers: Resolvers = {
       _,
       args: FilterProductsQueryArgs
     ): Promise<FilterProductsResponse> => {
-      const { state } = args;
+      const { status, page } = args;
       try {
         let products;
-        switch (state) {
+        switch (status) {
           case "FEATURED":
-            products = await Product.find({ isFeatured: true });
+            products = await await getConnection()
+              .getRepository(Product)
+              .find({
+                take: 25,
+                skip: 0 * page,
+                where: {
+                  isFeatured: true
+                }
+              });
           case "HELP":
-            products = await Product.find({ needsHelp: true });
+            products = await await getConnection()
+              .getRepository(Product)
+              .find({
+                take: 25,
+                skip: 0 * page,
+                where: {
+                  needsHelp: true
+                }
+              });
             break;
           case "LAUNCHED":
-            products = await Product.find({ isLaunched: true });
+            products = await await getConnection()
+              .getRepository(Product)
+              .find({
+                take: 25,
+                skip: 0 * page,
+                where: {
+                  isLaunched: true
+                }
+              });
             break;
           case "NEW":
             products = await getConnection()
               .getRepository(Product)
               .find({
-                createdAt: MoreThan(
-                  new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
-                )
+                take: 25,
+                skip: 0 * page,
+                where: {
+                  createdAt: MoreThan(
+                    new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
+                  )
+                }
               });
             break;
           case "UPDATED":
             products = await getConnection()
               .getRepository(Product)
               .find({
-                updatedAt: MoreThan(
-                  new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
-                )
+                take: 25,
+                skip: 0 * page,
+                where: {
+                  updatedAt: MoreThan(
+                    new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
+                  )
+                }
+              });
+            break;
+          default:
+            products = await getConnection()
+              .getRepository(Product)
+              .find({
+                take: 25,
+                skip: 0 * page,
+                where: {
+                  updatedAt: MoreThan(
+                    new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
+                  )
+                }
               });
             break;
         }

@@ -12,7 +12,7 @@ type User {
   goals: [Goal]
   fullName: String!
   profilePhoto: String!
-  strike: Int!
+  streak: Int!
   pendingGoals: [Goal]
   completedGoals: [Goal]
   createdAt: String!

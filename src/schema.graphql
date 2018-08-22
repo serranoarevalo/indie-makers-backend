@@ -25,8 +25,9 @@ type FilterProductsResponse {
 }
 
 type Query {
-  FilterProducts(state: ProductState!): FilterProductsResponse!
+  FilterProducts(status: ProductState!, page: Int!): FilterProductsResponse!
   CheckUsername(username: String!): CheckUsernameResponse!
+  FilterUsers(status: UserState!, page: Int!): FilterUsersResponse!
   GetMaker(username: String!): GetMakerResponse!
 }
 
@@ -67,6 +68,17 @@ type ConnectFBResponse {
 
 type Mutation {
   ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
+}
+
+enum UserState {
+  FIRE
+  SHIPPED
+}
+
+type FilterUsersResponse {
+  ok: Boolean!
+  error: String
+  makers: [User]
 }
 
 type GetMakerResponse {

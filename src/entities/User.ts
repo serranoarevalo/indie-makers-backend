@@ -50,7 +50,7 @@ class User extends Abstract {
     return `https://graph.facebook.com/${this.fbId}/picture?type=square`;
   }
 
-  get strike(): number {
+  get streak(): number {
     return 1;
   }
 

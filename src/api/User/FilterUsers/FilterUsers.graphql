@@ -1,0 +1,14 @@
+enum UserState {
+  FIRE
+  SHIPPED
+}
+
+type FilterUsersResponse {
+  ok: Boolean!
+  error: String
+  makers: [User]
+}
+
+type Query {
+  FilterUsers(status: UserState!, page: Int!): FilterUsersResponse!
+}
