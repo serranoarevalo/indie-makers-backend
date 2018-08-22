@@ -10,6 +10,26 @@ type Goal {
   product: Product
 }
 
+enum ProductState {
+  NEW
+  UPDATED
+  LAUNCHED
+  HELP
+  FEATURED
+}
+
+type FilterProductsResponse {
+  ok: Boolean!
+  error: String
+  products: [Product]
+}
+
+type Query {
+  FilterProducts(state: ProductState!): FilterProductsResponse!
+  CheckUsername(username: String!): CheckUsernameResponse!
+  GetMaker(username: String!): GetMakerResponse!
+}
+
 type Product {
   id: Int!
   createdAt: String!
@@ -36,11 +56,6 @@ type CheckUsernameResponse {
   ok: Boolean!
   available: Boolean
   error: String
-}
-
-type Query {
-  CheckUsername(username: String!): CheckUsernameResponse!
-  GetMaker(username: String!): GetMakerResponse!
 }
 
 type ConnectFBResponse {

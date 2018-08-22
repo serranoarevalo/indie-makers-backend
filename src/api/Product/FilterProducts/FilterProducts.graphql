@@ -1,0 +1,17 @@
+enum ProductState {
+  NEW
+  UPDATED
+  LAUNCHED
+  HELP
+  FEATURED
+}
+
+type FilterProductsResponse {
+  ok: Boolean!
+  error: String
+  products: [Product]
+}
+
+type Query {
+  FilterProducts(state: ProductState!): FilterProductsResponse!
+}
