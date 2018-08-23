@@ -1,0 +1,14 @@
+enum GoalStatus {
+  PENDING
+  COMPLETED
+}
+
+type FilterGoalsResponse {
+  ok: Boolean!
+  error: String
+  users: [User]
+}
+
+type Query {
+  FilterGoals(status: GoalStatus!, page: Int): FilterGoalsResponse!
+}

@@ -13,6 +13,7 @@ const resolvers: Resolvers = {
       args: FilterUsersQueryArgs
     ): Promise<FilterUsersResponse> => {
       const { status, page = 0 } = args;
+      const defaultPage = page || 0;
       try {
         let makers;
         switch (status) {
@@ -21,7 +22,7 @@ const resolvers: Resolvers = {
               order: {
                 streak: "DESC"
               },
-              skip: 0 * page,
+              skip: 0 * defaultPage,
               take: 25
             });
             break;
@@ -44,7 +45,7 @@ const resolvers: Resolvers = {
               order: {
                 updatedAt: "DESC"
               },
-              skip: 0 * page,
+              skip: 0 * defaultPage,
               take: 25
             });
         }

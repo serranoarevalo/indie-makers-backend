@@ -1,3 +1,22 @@
+enum GoalStatus {
+  PENDING
+  COMPLETED
+}
+
+type FilterGoalsResponse {
+  ok: Boolean!
+  error: String
+  users: [User]
+}
+
+type Query {
+  FilterGoals(status: GoalStatus!, page: Int): FilterGoalsResponse!
+  FilterProducts(status: ProductState!, page: Int): FilterProductsResponse!
+  CheckUsername(username: String!): CheckUsernameResponse!
+  FilterUsers(status: UserState!, page: Int): FilterUsersResponse!
+  GetMaker(username: String!): GetMakerResponse!
+}
+
 type Goal {
   id: Int!
   createdAt: String!
@@ -22,13 +41,6 @@ type FilterProductsResponse {
   ok: Boolean!
   error: String
   products: [Product]
-}
-
-type Query {
-  FilterProducts(status: ProductState!, page: Int!): FilterProductsResponse!
-  CheckUsername(username: String!): CheckUsernameResponse!
-  FilterUsers(status: UserState!, page: Int!): FilterUsersResponse!
-  GetMaker(username: String!): GetMakerResponse!
 }
 
 type Product {
@@ -101,7 +113,7 @@ type User {
   goals: [Goal]
   fullName: String!
   profilePhoto: String!
-  strike: Int!
+  streak: Int!
   pendingGoals: [Goal]
   completedGoals: [Goal]
   createdAt: String!

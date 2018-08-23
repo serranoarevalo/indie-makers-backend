@@ -12,16 +12,17 @@ const resolvers: Resolvers = {
       _,
       args: FilterProductsQueryArgs
     ): Promise<FilterProductsResponse> => {
-      const { status, page = 0 } = args;
+      const { status, page } = args;
+      const defaultPage = page || 0;
       try {
         let products;
         switch (status) {
           case "FEATURED":
-            products = await await getConnection()
+            products = await getConnection()
               .getRepository(Product)
               .find({
                 take: 25,
-                skip: 0 * page,
+                skip: 0 * defaultPage,
                 order: {
                   updatedAt: "DESC"
                 },
@@ -30,11 +31,11 @@ const resolvers: Resolvers = {
                 }
               });
           case "HELP":
-            products = await await getConnection()
+            products = await getConnection()
               .getRepository(Product)
               .find({
                 take: 25,
-                skip: 0 * page,
+                skip: 0 * defaultPage,
                 where: {
                   needsHelp: true
                 },
@@ -48,7 +49,7 @@ const resolvers: Resolvers = {
               .getRepository(Product)
               .find({
                 take: 25,
-                skip: 0 * page,
+                skip: 0 * defaultPage,
                 where: {
                   isLaunched: true
                 },
@@ -65,7 +66,7 @@ const resolvers: Resolvers = {
                   createdAt: "DESC"
                 },
                 take: 25,
-                skip: 0 * page
+                skip: 0 * defaultPage
               });
             break;
           case "UPDATED":
@@ -76,7 +77,7 @@ const resolvers: Resolvers = {
                   updatedAt: "DESC"
                 },
                 take: 25,
-                skip: 0 * page
+                skip: 0 * defaultPage
                 /* where: {
                   updatedAt: MoreThan(
                     new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
@@ -89,7 +90,7 @@ const resolvers: Resolvers = {
               .getRepository(Product)
               .find({
                 take: 25,
-                skip: 0 * page,
+                skip: 0 * defaultPage,
                 where: {
                   updatedAt: MoreThan(
                     new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
