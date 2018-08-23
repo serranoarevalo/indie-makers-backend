@@ -13,10 +13,10 @@ class User extends Abstract {
   @Column({ type: "text", unique: true, nullable: true })
   username: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   firstName: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   lastName: string;
 
   @Column({ type: "text", nullable: true })

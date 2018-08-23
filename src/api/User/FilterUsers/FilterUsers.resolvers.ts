@@ -1,3 +1,4 @@
+import { getRepository } from "typeorm";
 import User from "../../../entities/User";
 import {
   FilterUsersQueryArgs,
@@ -25,14 +26,18 @@ const resolvers: Resolvers = {
             });
             break;
           case "SHIPPED":
-            makers = await User.find({
-              order: {
-                launchedProductCount: 1
-              },
-              relations: ["products"],
-              skip: 0 * page,
-              take: 25
-            });
+            makers = await getRepository(User)
+              .createQueryBuilder("user")
+              .innerJoinAndSelect(
+                "user.products",
+                "products",
+                "products.isLaunched = :isLaunched",
+                {
+                  isLaunched: true
+                }
+              )
+              .orderBy("products", "DESC")
+              .getMany();
             break;
           default:
             makers = await User.find({
