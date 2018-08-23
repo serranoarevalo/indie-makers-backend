@@ -1,0 +1,15 @@
+type CreateProductResponse {
+  ok: Boolean!
+  error: String
+  product: Product
+}
+
+type Mutation {
+  CreateProduct(
+    name: String!
+    description: String!
+    needsHelp: Boolean!
+    website: String
+    logo: String
+  ): CreateProductResponse!
+}

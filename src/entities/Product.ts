@@ -30,11 +30,11 @@ class Product extends Abstract {
 
   @Column({ type: "text", unique: true, nullable: true })
   @IsUrl()
-  website: string;
+  website: string | null;
 
   @Column({ type: "text", nullable: true })
   @IsUrl()
-  logo: string;
+  logo: string | null;
 
   @Column({ nullable: true })
   makerId: number;
