@@ -1,0 +1,9 @@
+type GetProductResponse {
+  ok: Boolean!
+  error: String
+  product: Product
+}
+
+type Query {
+  GetProduct(slug: String!): GetProductResponse!
+}

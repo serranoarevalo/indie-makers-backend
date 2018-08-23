@@ -65,7 +65,7 @@ class Product extends Abstract {
   @Column({ nullable: true })
   launchedAt: Date;
 
-  @Column({ type: "text", default: "" })
+  @Column({ type: "text", nullable: true, unique: true })
   slug: string;
 
   get pendingGoals() {
@@ -78,7 +78,9 @@ class Product extends Abstract {
 
   @BeforeInsert()
   makeSlug() {
-    this.slug = this.name.replace(" ", "-");
+    this.slug = `${this.name.replace(" ", "-")}-${Math.floor(
+      Math.random() * 100000
+    ).toString()}`;
   }
 }
 
