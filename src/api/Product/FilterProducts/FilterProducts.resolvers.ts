@@ -22,6 +22,9 @@ const resolvers: Resolvers = {
               .find({
                 take: 25,
                 skip: 0 * page,
+                order: {
+                  updatedAt: "DESC"
+                },
                 where: {
                   isFeatured: true
                 }
@@ -34,6 +37,9 @@ const resolvers: Resolvers = {
                 skip: 0 * page,
                 where: {
                   needsHelp: true
+                },
+                order: {
+                  updatedAt: "DESC"
                 }
               });
             break;
@@ -45,6 +51,9 @@ const resolvers: Resolvers = {
                 skip: 0 * page,
                 where: {
                   isLaunched: true
+                },
+                order: {
+                  launchedAt: "DESC"
                 }
               });
             break;
@@ -52,26 +61,27 @@ const resolvers: Resolvers = {
             products = await getConnection()
               .getRepository(Product)
               .find({
+                order: {
+                  createdAt: "DESC"
+                },
                 take: 25,
-                skip: 0 * page,
-                where: {
-                  createdAt: MoreThan(
-                    new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
-                  )
-                }
+                skip: 0 * page
               });
             break;
           case "UPDATED":
             products = await getConnection()
               .getRepository(Product)
               .find({
+                order: {
+                  updatedAt: "DESC"
+                },
                 take: 25,
-                skip: 0 * page,
-                where: {
+                skip: 0 * page
+                /* where: {
                   updatedAt: MoreThan(
                     new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
                   )
-                }
+                } */
               });
             break;
           default:

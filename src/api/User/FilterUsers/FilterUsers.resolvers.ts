@@ -20,8 +20,8 @@ const resolvers: Resolvers = {
               order: {
                 streak: "DESC"
               },
-              take: 25,
-              skip: 0 * page
+              skip: 0 * page,
+              take: 25
             });
             break;
           case "SHIPPED":
@@ -30,15 +30,16 @@ const resolvers: Resolvers = {
                 launchedProductCount: 1
               },
               relations: ["products"],
-              take: 25,
-              skip: 0 * page
+              skip: 0 * page,
+              take: 25
             });
             break;
           default:
             makers = await User.find({
               order: {
-                streak: "DESC"
+                updatedAt: "DESC"
               },
+              skip: 0 * page,
               take: 25
             });
         }
