@@ -32,12 +32,15 @@ class User extends Abstract {
   @OneToMany(type => Product, product => product.maker)
   products: Product[];
 
-  @RelationCount((user: User) => user.products, "products", queryBuilder =>
-    queryBuilder.andWhere("products.isLaunched = :isLaunched", {
+  @RelationCount((user: User) => user.products, "products", qb =>
+    qb.andWhere("products.isLaunched = :isLaunched", {
       isLaunched: true
     })
   )
   launchedProductCount: number;
+
+  @Column({ type: "int", default: 0 })
+  streak: number;
 
   @OneToMany(type => Goal, goal => goal.maker)
   goals: Goal[];
@@ -48,10 +51,6 @@ class User extends Abstract {
 
   get profilePhoto(): string {
     return `https://graph.facebook.com/${this.fbId}/picture?type=square`;
-  }
-
-  get streak(): number {
-    return 1;
   }
 
   get pendingGoals() {

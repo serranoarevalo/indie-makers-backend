@@ -12,7 +12,7 @@ const resolvers: Resolvers = {
       _,
       args: FilterProductsQueryArgs
     ): Promise<FilterProductsResponse> => {
-      const { status, page } = args;
+      const { status, page = 0 } = args;
       try {
         let products;
         switch (status) {

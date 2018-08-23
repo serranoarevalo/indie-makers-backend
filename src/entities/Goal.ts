@@ -12,6 +12,9 @@ class Goal extends Abstract {
   isCompleted: boolean;
 
   @Column({ nullable: true })
+  completedAt: Date;
+
+  @Column({ nullable: true })
   makerId: number;
 
   @ManyToOne(type => User, user => user.goals)

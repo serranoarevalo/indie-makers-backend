@@ -11,7 +11,7 @@ const resolvers: Resolvers = {
       _,
       args: FilterUsersQueryArgs
     ): Promise<FilterUsersResponse> => {
-      const { status, page } = args;
+      const { status, page = 0 } = args;
       try {
         let makers;
         switch (status) {
@@ -27,8 +27,9 @@ const resolvers: Resolvers = {
           case "SHIPPED":
             makers = await User.find({
               order: {
-                launchedProductCount: "DESC"
+                launchedProductCount: 1
               },
+              relations: ["products"],
               take: 25,
               skip: 0 * page
             });
@@ -38,8 +39,7 @@ const resolvers: Resolvers = {
               order: {
                 streak: "DESC"
               },
-              take: 25,
-              skip: 0 * page
+              take: 25
             });
         }
         return {

@@ -55,6 +55,9 @@ class Product extends Abstract {
   )
   completedGoalCount: number;
 
+  @Column({ nullable: true })
+  launchedAt: Date;
+
   get slug(): string {
     return `${this.name.replace(" ", "-")}`;
   }

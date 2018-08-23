@@ -13,5 +13,5 @@ type FilterProductsResponse {
 }
 
 type Query {
-  FilterProducts(status: ProductState!, page: Int!): FilterProductsResponse!
+  FilterProducts(status: ProductState!, page: Int): FilterProductsResponse!
 }
