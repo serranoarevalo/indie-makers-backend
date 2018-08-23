@@ -46,7 +46,13 @@ type CreateProductResponse {
 
 type Mutation {
   CreateProduct(name: String!, description: String!, needsHelp: Boolean!, website: String, logo: String): CreateProductResponse!
+  EditProduct(productId: Int!, name: String, description: String, isLaunched: Boolean, needsHelp: Boolean, website: String, logo: String): EditProductResponse!
   ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
+}
+
+type EditProductResponse {
+  ok: Boolean!
+  error: String
 }
 
 enum ProductState {

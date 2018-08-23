@@ -8,7 +8,7 @@ const resolvers: Resolvers = {
   Query: {
     GetLatestProducts: privateResolver(
       async (_, __, { req }): Promise<GetLatestProductsResponse> => {
-        const user: User = req;
+        const user: User = req.user;
         try {
           const products = await Product.find({
             where: {

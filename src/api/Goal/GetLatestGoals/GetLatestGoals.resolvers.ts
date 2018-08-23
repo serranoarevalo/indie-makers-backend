@@ -8,7 +8,7 @@ const resolvers = {
   Query: {
     GetLatestGoals: privateResolver(
       async (_, __, { req }): Promise<GetLatestGoalsResponse> => {
-        const user: User = req;
+        const user: User = req.user;
         try {
           const goals = await getConnection()
             .getRepository(Goal)

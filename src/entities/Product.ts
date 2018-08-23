@@ -1,6 +1,7 @@
 import { IsUrl } from "class-validator";
 import {
   BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   ManyToOne,
@@ -76,6 +77,7 @@ class Product extends Abstract {
     return this.goals.filter(goal => goal.isCompleted === true);
   }
 
+  @BeforeUpdate()
   @BeforeInsert()
   makeSlug() {
     this.slug = `${this.name.replace(" ", "-")}-${Math.floor(

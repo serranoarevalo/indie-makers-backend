@@ -15,7 +15,7 @@ const resolvers: Resolvers = {
         args: CreateProductMutationArgs,
         { req }
       ): Promise<CreateProductResponse> => {
-        const user: User = req;
+        const user: User = req.user;
         try {
           const product = await Product.create({ ...args, maker: user }).save();
           if (product.id) {
