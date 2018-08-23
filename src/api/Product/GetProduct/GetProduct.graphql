@@ -5,5 +5,5 @@ type GetProductResponse {
 }
 
 type Query {
-  GetProduct(slug: String!): GetProductResponse!
+  GetProduct(id: Int!): GetProductResponse!
 }

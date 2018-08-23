@@ -8,11 +8,11 @@ const resolvers: Resolvers = {
       _,
       args: GetProductQueryArgs
     ): Promise<GetProductResponse> => {
-      const { slug } = args;
+      const { id } = args;
       try {
         const product = await Product.findOne(
           {
-            slug
+            id
           },
           { relations: ["goals", "maker"] }
         );

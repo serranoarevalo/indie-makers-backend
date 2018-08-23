@@ -1,0 +1,9 @@
+type GetLatestGoalsResponse {
+  ok: Boolean!
+  error: String
+  goals: [Goal]
+}
+
+type Query {
+  GetLatestGoals: GetLatestGoalsResponse!
+}

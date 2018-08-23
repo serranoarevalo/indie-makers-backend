@@ -65,7 +65,7 @@ class Product extends Abstract {
   @Column({ nullable: true })
   launchedAt: Date;
 
-  @Column({ type: "text", nullable: true, unique: true })
+  @Column({ type: "text", nullable: true })
   slug: string;
 
   get pendingGoals() {

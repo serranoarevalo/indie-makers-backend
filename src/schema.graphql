@@ -11,11 +11,18 @@ type FilterGoalsResponse {
 
 type Query {
   FilterGoals(status: GoalStatus!, page: Int): FilterGoalsResponse!
+  GetLatestGoals: GetLatestGoalsResponse!
   FilterProducts(status: ProductState!, page: Int): FilterProductsResponse!
-  GetProduct(slug: String!): GetProductResponse!
+  GetProduct(id: Int!): GetProductResponse!
   CheckUsername(username: String!): CheckUsernameResponse!
   FilterUsers(status: UserState!, page: Int): FilterUsersResponse!
   GetMaker(username: String!): GetMakerResponse!
+}
+
+type GetLatestGoalsResponse {
+  ok: Boolean!
+  error: String
+  goals: [Goal]
 }
 
 type Goal {
