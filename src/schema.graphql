@@ -13,6 +13,7 @@ type Query {
   FilterGoals(status: GoalStatus!, page: Int): FilterGoalsResponse!
   GetLatestGoals: GetLatestGoalsResponse!
   FilterProducts(status: ProductState!, page: Int): FilterProductsResponse!
+  GetLatestProducts: GetLatestProductsResponse!
   GetProduct(id: Int!): GetProductResponse!
   CheckUsername(username: String!): CheckUsernameResponse!
   FilterUsers(status: UserState!, page: Int): FilterUsersResponse!
@@ -46,6 +47,12 @@ enum ProductState {
 }
 
 type FilterProductsResponse {
+  ok: Boolean!
+  error: String
+  products: [Product]
+}
+
+type GetLatestProductsResponse {
   ok: Boolean!
   error: String
   products: [Product]

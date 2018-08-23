@@ -28,7 +28,8 @@ const resolvers: Resolvers = {
                 },
                 where: {
                   isFeatured: true
-                }
+                },
+                relations: ["maker"]
               });
           case "HELP":
             products = await getConnection()
@@ -41,7 +42,8 @@ const resolvers: Resolvers = {
                 },
                 order: {
                   updatedAt: "DESC"
-                }
+                },
+                relations: ["maker"]
               });
             break;
           case "LAUNCHED":
@@ -55,7 +57,8 @@ const resolvers: Resolvers = {
                 },
                 order: {
                   launchedAt: "DESC"
-                }
+                },
+                relations: ["maker"]
               });
             break;
           case "NEW":
@@ -66,7 +69,8 @@ const resolvers: Resolvers = {
                   createdAt: "DESC"
                 },
                 take: 25,
-                skip: 0 * defaultPage
+                skip: 0 * defaultPage,
+                relations: ["maker"]
               });
             break;
           case "UPDATED":
@@ -77,6 +81,7 @@ const resolvers: Resolvers = {
                   updatedAt: "DESC"
                 },
                 take: 25,
+                relations: ["maker"],
                 skip: 0 * defaultPage
                 /* where: {
                   updatedAt: MoreThan(
@@ -91,6 +96,7 @@ const resolvers: Resolvers = {
               .find({
                 take: 25,
                 skip: 0 * defaultPage,
+                relations: ["maker"],
                 where: {
                   updatedAt: MoreThan(
                     new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()

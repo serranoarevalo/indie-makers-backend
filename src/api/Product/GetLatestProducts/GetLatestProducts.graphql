@@ -1,0 +1,9 @@
+type GetLatestProductsResponse {
+  ok: Boolean!
+  error: String
+  products: [Product]
+}
+
+type Query {
+  GetLatestProducts: GetLatestProductsResponse!
+}
