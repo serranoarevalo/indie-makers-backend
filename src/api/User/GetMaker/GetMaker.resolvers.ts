@@ -11,7 +11,7 @@ const resolver: Resolvers = {
           {
             username
           },
-          { relations: ["goals"] }
+          { relations: ["goals", "products"] }
         );
         if (user) {
           return {

@@ -1,5 +1,12 @@
 import { IsUrl } from "class-validator";
-import { Column, Entity, ManyToOne, OneToMany, RelationCount } from "typeorm";
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  RelationCount
+} from "typeorm";
 import Abstract from "./Abstract";
 import Goal from "./Goal";
 import User from "./User";
@@ -58,9 +65,8 @@ class Product extends Abstract {
   @Column({ nullable: true })
   launchedAt: Date;
 
-  get slug(): string {
-    return `${this.name.replace(" ", "-")}`;
-  }
+  @Column({ type: "text", default: "" })
+  slug: string;
 
   get pendingGoals() {
     return this.goals.filter(goal => goal.isCompleted === false);
@@ -68,6 +74,11 @@ class Product extends Abstract {
 
   get completedGoals() {
     return this.goals.filter(goal => goal.isCompleted === true);
+  }
+
+  @BeforeInsert()
+  makeSlug() {
+    this.slug = this.name.replace(" ", "-");
   }
 }
 
