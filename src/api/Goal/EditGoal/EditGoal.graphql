@@ -1,0 +1,8 @@
+type EditGoalResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  EditGoal(goaldId: Int!, text: String, isCompleted: Boolean): EditGoalResponse!
+}

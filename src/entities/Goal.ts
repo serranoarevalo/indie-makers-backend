@@ -11,7 +11,7 @@ class Goal extends Abstract {
   @Column({ type: "boolean", default: false })
   isCompleted: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: "timestamp", nullable: true })
   completedAt: Date;
 
   @Column({ nullable: true })
