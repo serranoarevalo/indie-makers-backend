@@ -80,9 +80,7 @@ class Product extends Abstract {
   @BeforeUpdate()
   @BeforeInsert()
   makeSlug() {
-    this.slug = `${this.name.replace(" ", "-")}-${Math.floor(
-      Math.random() * 100000
-    ).toString()}`;
+    this.slug = `${this.name.replace(" ", "-")}`;
   }
 }
 
