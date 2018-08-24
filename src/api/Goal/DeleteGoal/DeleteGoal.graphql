@@ -1,0 +1,8 @@
+type DeleteGoalResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  DeleteGoal(goalId: Int!): DeleteGoalResponse!
+}
