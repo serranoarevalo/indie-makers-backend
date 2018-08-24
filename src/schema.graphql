@@ -1,3 +1,17 @@
+type CreateGoalResponse {
+  ok: Boolean!
+  error: String
+  goal: Goal
+}
+
+type Mutation {
+  CreateGoal(text: String!, productId: Int!): CreateGoalResponse!
+  CreateProduct(name: String!, description: String!, needsHelp: Boolean!, website: String, logo: String): CreateProductResponse!
+  DeleteProduct(productId: Int!): DeleteProductResponse!
+  EditProduct(productId: Int!, name: String, description: String, isLaunched: Boolean, needsHelp: Boolean, website: String, logo: String): EditProductResponse!
+  ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
+}
+
 enum GoalStatus {
   PENDING
   COMPLETED
@@ -42,13 +56,6 @@ type CreateProductResponse {
   ok: Boolean!
   error: String
   product: Product
-}
-
-type Mutation {
-  CreateProduct(name: String!, description: String!, needsHelp: Boolean!, website: String, logo: String): CreateProductResponse!
-  DeleteProduct(productId: Int!): DeleteProductResponse!
-  EditProduct(productId: Int!, name: String, description: String, isLaunched: Boolean, needsHelp: Boolean, website: String, logo: String): EditProductResponse!
-  ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
 }
 
 type DeleteProductResponse {

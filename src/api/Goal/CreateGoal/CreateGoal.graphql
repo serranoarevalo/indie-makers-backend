@@ -1,0 +1,9 @@
+type CreateGoalResponse {
+  ok: Boolean!
+  error: String
+  goal: Goal
+}
+
+type Mutation {
+  CreateGoal(text: String!, productId: Int!): CreateGoalResponse!
+}
