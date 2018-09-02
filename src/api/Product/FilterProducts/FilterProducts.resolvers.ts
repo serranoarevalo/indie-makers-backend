@@ -21,8 +21,8 @@ const resolvers: Resolvers = {
             products = await getConnection()
               .getRepository(Product)
               .find({
-                take: 25,
-                skip: 0 * defaultPage,
+                take: args.take || 25,
+                skip: 25 * defaultPage,
                 order: {
                   updatedAt: "DESC"
                 },
@@ -35,8 +35,8 @@ const resolvers: Resolvers = {
             products = await getConnection()
               .getRepository(Product)
               .find({
-                take: 25,
-                skip: 0 * defaultPage,
+                take: args.take || 25,
+                skip: 25 * defaultPage,
                 where: {
                   needsHelp: true
                 },
@@ -50,8 +50,8 @@ const resolvers: Resolvers = {
             products = await await getConnection()
               .getRepository(Product)
               .find({
-                take: 25,
-                skip: 0 * defaultPage,
+                take: args.take || 25,
+                skip: 25 * defaultPage,
                 where: {
                   isLaunched: true
                 },
@@ -68,8 +68,8 @@ const resolvers: Resolvers = {
                 order: {
                   createdAt: "DESC"
                 },
-                take: 25,
-                skip: 0 * defaultPage,
+                take: args.take || 25,
+                skip: 25 * defaultPage,
                 relations: ["maker"]
               });
             break;
@@ -80,9 +80,9 @@ const resolvers: Resolvers = {
                 order: {
                   updatedAt: "DESC"
                 },
-                take: 25,
+                take: args.take || 25,
                 relations: ["maker"],
-                skip: 0 * defaultPage
+                skip: 25 * defaultPage
                 /* where: {
                   updatedAt: MoreThan(
                     new Date(Date.now() - 24 * 60 * 60 * 1000).toUTCString()
@@ -95,7 +95,7 @@ const resolvers: Resolvers = {
               .getRepository(Product)
               .find({
                 take: 25,
-                skip: 0 * defaultPage,
+                skip: 25 * defaultPage,
                 relations: ["maker"],
                 where: {
                   updatedAt: MoreThan(

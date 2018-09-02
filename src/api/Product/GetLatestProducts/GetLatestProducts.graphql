@@ -5,5 +5,5 @@ type GetLatestProductsResponse {
 }
 
 type Query {
-  GetLatestProducts: GetLatestProductsResponse!
+  GetLatestProducts(take: Int, page: Int): GetLatestProductsResponse!
 }
