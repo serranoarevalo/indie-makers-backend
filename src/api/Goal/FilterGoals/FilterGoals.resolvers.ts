@@ -12,7 +12,7 @@ const resolvers: Resolvers = {
       _,
       args: FilterGoalsQueryArgs
     ): Promise<FilterGoalsResponse> => {
-      const { status, page } = args;
+      const { status, page, take } = args;
       const defaultPage = page || 0;
       try {
         const users = await getConnection()
@@ -28,6 +28,8 @@ const resolvers: Resolvers = {
               lessDay: `${defaultPage} day`
             }
           )
+          .take(take || 25)
+          .skip(25 * defaultPage)
           .orderBy("user.updatedAt", "DESC")
           .getMany();
         return {

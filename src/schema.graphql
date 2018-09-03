@@ -37,7 +37,7 @@ type FilterGoalsResponse {
 }
 
 type Query {
-  FilterGoals(status: GoalStatus!, page: Int): FilterGoalsResponse!
+  FilterGoals(status: GoalStatus!, page: Int, take: Int): FilterGoalsResponse!
   GetLatestGoals: GetLatestGoalsResponse!
   FilterProducts(status: ProductState!, page: Int, take: Int): FilterProductsResponse!
   GetLatestProducts(take: Int, page: Int): GetLatestProductsResponse!
