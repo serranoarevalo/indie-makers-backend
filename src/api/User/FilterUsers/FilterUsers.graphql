@@ -10,5 +10,5 @@ type FilterUsersResponse {
 }
 
 type Query {
-  FilterUsers(status: UserState!, page: Int): FilterUsersResponse!
+  FilterUsers(status: UserState!, page: Int, take: Int): FilterUsersResponse!
 }
