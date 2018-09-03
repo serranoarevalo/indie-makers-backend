@@ -6,7 +6,7 @@ enum GoalStatus {
 type FilterGoalsResponse {
   ok: Boolean!
   error: String
-  users: [User]
+  makers: [User]
 }
 
 type Query {

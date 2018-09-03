@@ -15,7 +15,7 @@ const resolvers: Resolvers = {
       const { status, page, take } = args;
       const defaultPage = page || 0;
       try {
-        const users = await getConnection()
+        const makers = await getConnection()
           .getRepository(User)
           .createQueryBuilder("user")
           .innerJoinAndSelect(
@@ -28,6 +28,7 @@ const resolvers: Resolvers = {
               lessDay: `${defaultPage} day`
             }
           )
+          .innerJoinAndSelect("goals.product", "product")
           .take(take || 25)
           .skip(25 * defaultPage)
           .orderBy("user.updatedAt", "DESC")
@@ -35,13 +36,13 @@ const resolvers: Resolvers = {
         return {
           ok: true,
           error: null,
-          users
+          makers
         };
       } catch (error) {
         return {
           ok: false,
           error,
-          users: null
+          makers: null
         };
       }
     }

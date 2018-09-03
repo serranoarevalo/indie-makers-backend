@@ -23,7 +23,7 @@ class Goal extends Abstract {
   @Column({ nullable: true })
   productId: number;
 
-  @ManyToOne(type => Product, product => product.goals)
+  @ManyToOne(type => Product, product => product.goals, { eager: true })
   product: Product;
 }
 
