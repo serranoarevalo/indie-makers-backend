@@ -14,13 +14,14 @@ const resolvers: Resolvers = {
     ): Promise<FilterProductsResponse> => {
       const { status, page } = args;
       const defaultPage = page || 0;
+      let products: Product[];
+      let totalPages = 0;
       try {
-        let products;
         switch (status) {
           case "FEATURED":
-            products = await getConnection()
+            [products, totalPages] = await getConnection()
               .getRepository(Product)
-              .find({
+              .findAndCount({
                 take: args.take || 25,
                 skip: 25 * defaultPage,
                 order: {
@@ -31,10 +32,11 @@ const resolvers: Resolvers = {
                 },
                 relations: ["maker"]
               });
+            break;
           case "HELP":
-            products = await getConnection()
+            [products, totalPages] = await getConnection()
               .getRepository(Product)
-              .find({
+              .findAndCount({
                 take: args.take || 25,
                 skip: 25 * defaultPage,
                 where: {
@@ -47,9 +49,9 @@ const resolvers: Resolvers = {
               });
             break;
           case "LAUNCHED":
-            products = await await getConnection()
+            [products, totalPages] = await await getConnection()
               .getRepository(Product)
-              .find({
+              .findAndCount({
                 take: args.take || 25,
                 skip: 25 * defaultPage,
                 where: {
@@ -62,9 +64,9 @@ const resolvers: Resolvers = {
               });
             break;
           case "NEW":
-            products = await getConnection()
+            [products, totalPages] = await getConnection()
               .getRepository(Product)
-              .find({
+              .findAndCount({
                 order: {
                   createdAt: "DESC"
                 },
@@ -74,9 +76,9 @@ const resolvers: Resolvers = {
               });
             break;
           case "UPDATED":
-            products = await getConnection()
+            [products, totalPages] = await getConnection()
               .getRepository(Product)
-              .find({
+              .findAndCount({
                 order: {
                   updatedAt: "DESC"
                 },
@@ -89,11 +91,12 @@ const resolvers: Resolvers = {
                   )
                 } */
               });
+
             break;
           default:
-            products = await getConnection()
+            [products, totalPages] = await getConnection()
               .getRepository(Product)
-              .find({
+              .findAndCount({
                 take: 25,
                 skip: 25 * defaultPage,
                 relations: ["maker"],
@@ -108,13 +111,17 @@ const resolvers: Resolvers = {
         return {
           products,
           ok: true,
-          error: null
+          error: null,
+          page: 0,
+          totalPages: Math.floor(totalPages / 25)
         };
       } catch (error) {
         return {
           products: null,
           ok: false,
-          error
+          error,
+          page: 0,
+          totalPages: 0
         };
       }
     }

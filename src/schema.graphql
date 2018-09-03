@@ -94,6 +94,8 @@ type FilterProductsResponse {
   ok: Boolean!
   error: String
   products: [Product]
+  page: Int!
+  totalPages: Int!
 }
 
 type GetLatestProductsResponse {
