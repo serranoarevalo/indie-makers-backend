@@ -64,7 +64,7 @@ class Product extends Abstract {
   completedGoalCount: number;
 
   @Column({ nullable: true })
-  launchedAt: Date;
+  launchedAt: string;
 
   @Column({ type: "text", nullable: true })
   slug: string;

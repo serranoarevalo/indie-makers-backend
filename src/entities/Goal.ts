@@ -12,7 +12,7 @@ class Goal extends Abstract {
   isCompleted: boolean;
 
   @Column({ type: "timestamp", nullable: true })
-  completedAt: Date;
+  completedAt: string;
 
   @Column({ nullable: true })
   makerId: number;

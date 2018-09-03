@@ -57,6 +57,7 @@ type Goal {
   id: Int!
   createdAt: String!
   updatedAt: String
+  completedAt: String
   text: String!
   isCompleted: Boolean!
   makerId: Int!
