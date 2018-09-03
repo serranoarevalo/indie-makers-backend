@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm";
+import { getRepository, MoreThan } from "typeorm";
 import User from "../../../entities/User";
 import {
   FilterUsersQueryArgs,
@@ -22,6 +22,7 @@ const resolvers: Resolvers = {
               order: {
                 streak: "DESC"
               },
+              where: { streak: MoreThan(0) },
               skip: 25 * defaultPage,
               take: take || 25
             });
