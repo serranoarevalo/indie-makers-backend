@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne } from "typeorm";
 import Abstract from "./Abstract";
 import Product from "./Product";
 import User from "./User";
@@ -25,6 +25,12 @@ class Goal extends Abstract {
 
   @ManyToOne(type => Product, product => product.goals, { eager: true })
   product: Product;
+
+  @BeforeUpdate()
+  @BeforeInsert()
+  formatFields() {
+    this.text = `${this.text[0].toUpperCase()}${this.text.substring(1)}`;
+  }
 }
 
 export default Goal;

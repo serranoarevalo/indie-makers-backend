@@ -66,7 +66,10 @@ class Product extends Abstract {
   @Column({ nullable: true })
   launchedAt: string;
 
-  @Column({ type: "text", nullable: true })
+  @Column({
+    type: "text",
+    unique: true
+  })
   slug: string;
 
   get pendingGoals() {
@@ -79,8 +82,14 @@ class Product extends Abstract {
 
   @BeforeUpdate()
   @BeforeInsert()
-  makeSlug() {
-    this.slug = `${this.name.replace(" ", "-")}`;
+  formatFields() {
+    this.slug = `${this.name.replace(" ", "-")}-${Math.random()
+      .toString(36)
+      .substr(2)}`;
+    this.name = `${this.name[0].toUpperCase()}${this.name.substring(1)}`;
+    this.description = `${this.description[0].toUpperCase()}${this.description.substring(
+      1
+    )}`;
   }
 }
 

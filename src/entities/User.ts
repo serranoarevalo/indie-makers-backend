@@ -1,5 +1,12 @@
 import { IsEmail, IsUrl } from "class-validator";
-import { Column, Entity, OneToMany, RelationCount } from "typeorm";
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  OneToMany,
+  RelationCount
+} from "typeorm";
 import Abstract from "./Abstract";
 import Goal from "./Goal";
 import Product from "./Product";
@@ -59,6 +66,18 @@ class User extends Abstract {
 
   get completedGoals() {
     return this.goals.filter(goal => goal.isCompleted === true);
+  }
+
+  @BeforeUpdate()
+  @BeforeInsert()
+  formatFields() {
+    this.firstName = `${this.firstName[0].toUpperCase()}${this.firstName.substring(
+      1
+    )}`;
+    this.lastName = `${this.lastName[0].toUpperCase()}${this.lastName.substring(
+      1
+    )}`;
+    this.bio = `${this.bio[0].toUpperCase()}${this.bio.substring(1)}`;
   }
 }
 
