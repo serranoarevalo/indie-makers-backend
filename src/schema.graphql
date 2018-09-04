@@ -43,7 +43,7 @@ type Query {
   GetLatestGoals: GetLatestGoalsResponse!
   FilterProducts(status: ProductState!, page: Int, take: Int): FilterProductsResponse!
   GetLatestProducts(take: Int, page: Int): GetLatestProductsResponse!
-  GetProduct(id: Int!): GetProductResponse!
+  GetProduct(slug: String!): GetProductResponse!
   CheckUsername(username: String!): CheckUsernameResponse!
   FilterUsers(status: UserState!, page: Int, take: Int): FilterUsersResponse!
   GetMaker(username: String!): GetMakerResponse!
