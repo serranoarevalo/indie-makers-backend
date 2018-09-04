@@ -40,7 +40,7 @@
     "pg": "^7.4.3",
     "ts-node": "^7.0.0",
     "tslint-config-prettier": "^1.14.0",
-    "typeorm": "^0.3.0-alpha.10",
+    "typeorm": "^0.2.7",
     "typescript": "^2.9.2"
   }
 }

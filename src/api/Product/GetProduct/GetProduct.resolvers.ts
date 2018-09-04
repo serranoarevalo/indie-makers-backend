@@ -14,7 +14,7 @@ const resolvers: Resolvers = {
           {
             id
           },
-          { relations: ["goals", "maker"] }
+          { relations: ["maker", "goals"] }
         );
         if (product) {
           return {
