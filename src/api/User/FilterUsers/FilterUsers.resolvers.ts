@@ -14,11 +14,12 @@ const resolvers: Resolvers = {
     ): Promise<FilterUsersResponse> => {
       const { status, page = 0, take } = args;
       const defaultPage = page || 0;
+      let makers: User[];
+      let totalPages = 0;
       try {
-        let makers;
         switch (status) {
           case "FIRE":
-            makers = await User.find({
+            [makers, totalPages] = await User.findAndCount({
               order: {
                 streak: "DESC"
               },
@@ -28,7 +29,7 @@ const resolvers: Resolvers = {
             });
             break;
           case "SHIPPED":
-            makers = await getRepository(User)
+            [makers, totalPages] = await getRepository(User)
               .createQueryBuilder("user")
               .innerJoinAndSelect(
                 "user.products",
@@ -39,27 +40,41 @@ const resolvers: Resolvers = {
                 }
               )
               .orderBy("products", "DESC")
-              .getMany();
+              .getManyAndCount();
             break;
           case "UPDATED":
-            makers = await User.find({
+            [makers, totalPages] = await User.findAndCount({
               order: {
                 updatedAt: "DESC"
               },
               skip: 25 * defaultPage,
               take: take || 25
             });
+            break;
+          default:
+            [makers, totalPages] = await User.findAndCount({
+              order: {
+                updatedAt: "DESC"
+              },
+              skip: 25 * defaultPage,
+              take: take || 25
+            });
+            break;
         }
         return {
           makers,
           ok: true,
-          error: null
+          error: null,
+          page: page || 0,
+          totalPages: Math.floor(totalPages / 25)
         };
       } catch (error) {
         return {
           error,
           ok: false,
-          makers: null
+          makers: null,
+          page: 0,
+          totalPages: 0
         };
       }
     }

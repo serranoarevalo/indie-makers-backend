@@ -160,6 +160,8 @@ type FilterUsersResponse {
   ok: Boolean!
   error: String
   makers: [User]
+  page: Int!
+  totalPages: Int!
 }
 
 type GetMakerResponse {

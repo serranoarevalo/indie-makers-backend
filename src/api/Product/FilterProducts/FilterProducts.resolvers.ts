@@ -91,7 +91,6 @@ const resolvers: Resolvers = {
                   )
                 } */
               });
-
             break;
           default:
             [products, totalPages] = await getConnection()
@@ -112,7 +111,7 @@ const resolvers: Resolvers = {
           products,
           ok: true,
           error: null,
-          page: 0,
+          page: page || 0,
           totalPages: Math.floor(totalPages / 25)
         };
       } catch (error) {
