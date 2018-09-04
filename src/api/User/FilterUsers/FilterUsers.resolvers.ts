@@ -41,7 +41,7 @@ const resolvers: Resolvers = {
               .orderBy("products", "DESC")
               .getMany();
             break;
-          default:
+          case "UPDATED":
             makers = await User.find({
               order: {
                 updatedAt: "DESC"

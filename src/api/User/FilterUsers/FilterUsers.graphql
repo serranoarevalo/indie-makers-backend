@@ -1,4 +1,5 @@
 enum UserState {
+  UPDATED
   FIRE
   SHIPPED
 }
