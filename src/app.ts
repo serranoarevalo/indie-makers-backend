@@ -25,9 +25,9 @@ class App {
 
   private middlewares = (): void => {
     this.app.express.use(cookieParser());
-    this.app.express.use(logger("dev"));
     this.app.express.use(helmet());
     this.app.express.use(this.jwt);
+    this.app.express.use(logger("dev"));
   };
 
   private jwt = async (
@@ -42,6 +42,7 @@ class App {
         req.user = user;
       } else {
         req.user = undefined;
+        res.clearCookie("X-JWT");
       }
     }
     next();
