@@ -14,7 +14,7 @@ const resolvers: Resolvers = {
         return {
           ok: false,
           error: "This is not a FB Connect",
-          new: false,
+          isNew: false,
           token: null
         };
       }
@@ -28,7 +28,7 @@ const resolvers: Resolvers = {
             ok: true,
             token,
             error: null,
-            new: false
+            isNew: false
           };
         } else {
           const newUser = await User.create({
@@ -42,7 +42,7 @@ const resolvers: Resolvers = {
             ok: true,
             token,
             error: null,
-            new: true
+            isNew: true
           };
         }
       } catch (error) {
@@ -50,7 +50,7 @@ const resolvers: Resolvers = {
           error,
           ok: false,
           token: null,
-          new: false
+          isNew: false
         };
       }
     }

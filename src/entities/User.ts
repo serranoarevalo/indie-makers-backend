@@ -71,13 +71,19 @@ class User extends Abstract {
   @BeforeUpdate()
   @BeforeInsert()
   formatFields() {
-    this.firstName = `${this.firstName[0].toUpperCase()}${this.firstName.substring(
-      1
-    )}`;
-    this.lastName = `${this.lastName[0].toUpperCase()}${this.lastName.substring(
-      1
-    )}`;
-    this.bio = `${this.bio[0].toUpperCase()}${this.bio.substring(1)}`;
+    if (this.firstName) {
+      this.firstName = `${this.firstName[0].toUpperCase()}${this.firstName.substring(
+        1
+      )}`;
+    }
+    if (this.lastName) {
+      this.lastName = `${this.lastName[0].toUpperCase()}${this.lastName.substring(
+        1
+      )}`;
+    }
+    if (this.bio) {
+      this.bio = `${this.bio[0].toUpperCase()}${this.bio.substring(1)}`;
+    }
   }
 }
 

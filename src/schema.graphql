@@ -144,7 +144,7 @@ type ConnectFBResponse {
   ok: Boolean!
   error: String
   token: String
-  new: Boolean!
+  isNew: Boolean!
 }
 
 type EditUserResponse {
