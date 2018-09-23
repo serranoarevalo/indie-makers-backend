@@ -10,6 +10,14 @@ const resolvers: Resolvers = {
       args: ConnectFbMutationArgs
     ): Promise<ConnectFBResponse> => {
       const { firstName, lastName, email, fbId } = args;
+      if (!fbId) {
+        return {
+          ok: false,
+          error: "This is not a FB Connect",
+          new: false,
+          token: null
+        };
+      }
       try {
         const user = await User.findOne({
           fbId
