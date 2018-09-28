@@ -36,7 +36,6 @@ class App {
     next: NextFunction
   ): Promise<void> => {
     const token = req.cookies["X-JWT"] || req.get("X-JWT");
-    console.log(token);
     if (token) {
       const user = await decodeJWT(token);
       if (user) {

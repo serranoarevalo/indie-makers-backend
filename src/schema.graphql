@@ -47,6 +47,7 @@ type Query {
   CheckUsername(username: String!): CheckUsernameResponse!
   FilterUsers(status: UserState!, page: Int, take: Int): FilterUsersResponse!
   GetMaker(username: String!): GetMakerResponse!
+  Me: MeResponse!
 }
 
 type GetLatestGoalsResponse {
@@ -170,6 +171,12 @@ type GetMakerResponse {
   ok: Boolean!
   error: String
   maker: User
+}
+
+type MeResponse {
+  ok: Boolean!
+  error: String
+  user: User
 }
 
 type User {
