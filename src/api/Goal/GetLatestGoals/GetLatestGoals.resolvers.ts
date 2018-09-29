@@ -20,7 +20,8 @@ const resolvers = {
               },
               order: {
                 updatedAt: "DESC"
-              }
+              },
+              relations: ["product"]
             });
           return {
             error: null,
