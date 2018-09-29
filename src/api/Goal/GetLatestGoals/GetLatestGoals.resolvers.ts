@@ -1,27 +1,36 @@
 import { getConnection } from "typeorm";
 import Goal from "../../../entities/Goal";
 import User from "../../../entities/User";
-import { GetLatestGoalsResponse } from "../../../types/graph";
+import {
+  GetLatestGoalsQueryArgs,
+  GetLatestGoalsResponse
+} from "../../../types/graph";
 import privateResolver from "../../../utils/privateResolver";
 
 const resolvers = {
   Query: {
     GetLatestGoals: privateResolver(
-      async (_, __, { req }): Promise<GetLatestGoalsResponse> => {
+      async (
+        _,
+        args: GetLatestGoalsQueryArgs,
+        { req }
+      ): Promise<GetLatestGoalsResponse> => {
         const user: User = req.user;
+        const { take, page } = args;
+        const defaultPage = page || 0;
         try {
           const goals = await getConnection()
             .getRepository(Goal)
             .find({
-              take: 10,
+              take: take || 10,
+              skip: 25 * defaultPage,
               where: {
                 isCompleted: false,
                 maker: user
               },
               order: {
                 updatedAt: "DESC"
-              },
-              relations: ["product"]
+              }
             });
           return {
             error: null,

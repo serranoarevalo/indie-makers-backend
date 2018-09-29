@@ -5,5 +5,5 @@ type GetLatestGoalsResponse {
 }
 
 type Query {
-  GetLatestGoals: GetLatestGoalsResponse!
+  GetLatestGoals(take: Int, page: Int): GetLatestGoalsResponse!
 }
