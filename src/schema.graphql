@@ -42,6 +42,7 @@ type Query {
   FilterGoals(status: GoalStatus!, page: Int, take: Int): FilterGoalsResponse!
   GetLatestGoals(take: Int, page: Int): GetLatestGoalsResponse!
   FilterProducts(status: ProductState!, page: Int, take: Int): FilterProductsResponse!
+  GetAllProducts: GetAllProductsResponse!
   GetLatestProducts(take: Int, page: Int): GetLatestProductsResponse!
   GetProduct(slug: String!): GetProductResponse!
   CheckUsername(username: String!): CheckUsernameResponse!
@@ -99,6 +100,12 @@ type FilterProductsResponse {
   products: [Product]
   page: Int!
   totalPages: Int!
+}
+
+type GetAllProductsResponse {
+  ok: Boolean!
+  error: String
+  products: [Product]
 }
 
 type GetLatestProductsResponse {
