@@ -33,7 +33,7 @@ enum GoalStatus {
 type FilterGoalsResponse {
   ok: Boolean!
   error: String
-  makers: [User]
+  goals: [Goal]
   page: Int!
   totalPages: Int!
 }

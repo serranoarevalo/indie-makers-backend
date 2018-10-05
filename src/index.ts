@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config({ path: "../.env" });
-
+process.env.TZ = "UTC";
 import { Options } from "graphql-yoga";
 import { createConnection } from "typeorm";
 import app from "./app";
