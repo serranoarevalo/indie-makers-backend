@@ -29,7 +29,7 @@ class Product extends Abstract {
   @Column({ type: "boolean", default: false })
   isFeatured: boolean;
 
-  @Column({ type: "text", unique: true, nullable: true })
+  @Column({ type: "text", nullable: true })
   @IsUrl()
   website: string | null;
 

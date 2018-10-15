@@ -25,7 +25,12 @@ class App {
 
   private middlewares = (): void => {
     this.app.express.use(cookieParser());
-    this.app.express.use(cors());
+    this.app.express.use(
+      cors({
+        origin: "http://127.0.0.1:3000",
+        credentials: true
+      })
+    );
     this.app.express.use(helmet());
     this.app.express.use("/aws", router);
     this.app.express.use(this.jwt);
