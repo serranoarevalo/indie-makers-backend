@@ -1,8 +1,10 @@
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import { NextFunction, Response } from "express";
 import { GraphQLServer } from "graphql-yoga";
 import helmet from "helmet";
 import logger from "morgan";
+import router from "./router";
 import schema from "./schema";
 import decodeJWT from "./utils/decodeJWT";
 
@@ -23,7 +25,9 @@ class App {
 
   private middlewares = (): void => {
     this.app.express.use(cookieParser());
+    this.app.express.use(cors());
     this.app.express.use(helmet());
+    this.app.express.use("/aws", router);
     this.app.express.use(this.jwt);
     this.app.express.use(logger("dev"));
   };

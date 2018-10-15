@@ -18,7 +18,7 @@ class User extends Abstract {
   email: string | null;
 
   @Column({ type: "text", unique: true, nullable: true })
-  username: string;
+  username: string | null;
 
   @Column({ type: "text", nullable: true })
   firstName: string;
@@ -34,7 +34,7 @@ class User extends Abstract {
   fbId: string;
 
   @Column({ type: "text", nullable: true })
-  bio: string;
+  bio: string | null;
 
   @OneToMany(type => Product, product => product.maker)
   products: Product[];

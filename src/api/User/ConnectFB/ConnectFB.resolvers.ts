@@ -35,7 +35,8 @@ const resolvers: Resolvers = {
             firstName,
             lastName,
             email,
-            fbId
+            fbId,
+            username: `${firstName.toLowerCase()}.${lastName.toLocaleLowerCase()}`
           }).save();
           const token = await createJWT(newUser.id);
           return {
