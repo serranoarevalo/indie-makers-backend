@@ -83,7 +83,7 @@ class Product extends Abstract {
   @BeforeUpdate()
   @BeforeInsert()
   formatFields() {
-    this.slug = `${this.name.replace(" ", "-")}-${Math.random()
+    this.slug = `${this.name.toLowerCase().replace(" ", "-")}-${Math.random()
       .toString(36)
       .substr(2)}`;
     this.name = `${this.name[0].toUpperCase()}${this.name.substring(1)}`;

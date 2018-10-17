@@ -25,7 +25,6 @@ const resolvers = {
               take: take || 10,
               skip: 25 * defaultPage,
               where: {
-                isCompleted: false,
                 maker: user
               },
               order: {
