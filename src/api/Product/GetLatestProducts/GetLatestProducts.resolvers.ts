@@ -26,7 +26,7 @@ const resolvers: Resolvers = {
             take: take || 10,
             skip: 25 * defaultPage,
             order: {
-              updatedAt: "DESC"
+              updatedAt: "ASC"
             }
           });
           return {

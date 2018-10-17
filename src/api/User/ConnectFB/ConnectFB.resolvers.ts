@@ -37,6 +37,9 @@ const resolvers: Resolvers = {
             email,
             fbId,
             username: `${firstName.toLowerCase()}.${lastName.toLocaleLowerCase()}`
+              .replace(" ", ".")
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
           }).save();
           const token = await createJWT(newUser.id);
           return {
