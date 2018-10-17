@@ -17,9 +17,9 @@ const resolvers: Resolvers = {
         try {
           const notNull: any = cleanNullArgs(args);
           if (notNull.isCompleted) {
-            notNull.completedAt = Date.now();
+            notNull.completedAt = new Date().toUTCString();
           }
-          await Goal.update({ id: args.goaldId, maker: user }, { ...notNull });
+          await Goal.update({ id: args.goalId, maker: user }, { ...notNull });
           return {
             ok: true,
             error: null

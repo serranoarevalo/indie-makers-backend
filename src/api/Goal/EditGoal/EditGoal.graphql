@@ -4,5 +4,5 @@ type EditGoalResponse {
 }
 
 type Mutation {
-  EditGoal(goaldId: Int!, text: String, isCompleted: Boolean): EditGoalResponse!
+  EditGoal(goalId: Int!, text: String, isCompleted: Boolean): EditGoalResponse!
 }
