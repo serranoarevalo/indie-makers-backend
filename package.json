@@ -19,7 +19,7 @@
     "prebuild": "rm -rf dist",
     "build": "tsc",
     "postbuild": "cd src && copy ./api/**/*.graphql ../dist/api",
-    "start": "cd src && node index.js"
+    "start": "cd dist && node index.js"
   },
   "dependencies": {
     "aws-sdk": "^2.334.0",
@@ -45,7 +45,8 @@
     "typescript": "^2.9.2"
   },
   "now": {
-    "name": "indie-makers",
-    "dotenv": ".env.product"
+    "name": "indie-makers-server",
+    "dotenv": ".env.production",
+    "alias": "indie-api.now.sh"
   }
 }

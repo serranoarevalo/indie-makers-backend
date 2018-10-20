@@ -101,7 +101,7 @@ class Product extends Abstract {
   }
 
   formatSlug = () =>
-    `${this.id}${Math.random()
+    `${this.name[0]}${Math.random()
       .toString(36)
       .substr(2)}`;
 
