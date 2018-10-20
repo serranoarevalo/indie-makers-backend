@@ -65,6 +65,9 @@ class Product extends Abstract {
   @Column({ nullable: true })
   launchedAt: string;
 
+  @Column({ type: "text", nullable: true })
+  bs: string;
+
   @Column({
     type: "text",
     unique: true
@@ -85,20 +88,20 @@ class Product extends Abstract {
   }
 
   formatFields() {
-    this.slug = this.formatSlug(this.name);
+    this.slug = this.formatSlug();
     this.name = this.formatName(this.name);
     this.description = this.formatDescription(this.description);
   }
 
   saveFormatFields(name: string, description: string) {
-    const newSlug = this.formatSlug(name);
+    const newSlug = this.formatSlug();
     const newName = this.formatName(name);
     const newDescription = this.formatDescription(description);
     return { newSlug, newName, newDescription };
   }
 
-  formatSlug = (name: string) =>
-    `${name.toLowerCase().replace(/ /g, "-")}-${Math.random()
+  formatSlug = () =>
+    `${this.id}${Math.random()
       .toString(36)
       .substr(2)}`;
 

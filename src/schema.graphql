@@ -84,7 +84,6 @@ type DeleteProductResponse {
 type EditProductResponse {
   ok: Boolean!
   error: String
-  product: Product
 }
 
 enum ProductState {

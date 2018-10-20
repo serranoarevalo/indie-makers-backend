@@ -1,7 +1,6 @@
 type EditProductResponse {
   ok: Boolean!
   error: String
-  product: Product
 }
 
 type Mutation {

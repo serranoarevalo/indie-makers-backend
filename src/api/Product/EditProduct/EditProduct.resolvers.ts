@@ -24,10 +24,6 @@ const resolvers: Resolvers = {
             maker: user
           });
           if (product) {
-            if (args.name) {
-              product.name = product.formatName(args.name);
-              product.slug = product.formatSlug(args.name);
-            }
             if (args.description) {
               product.description = args.description;
               product.description = product.formatDescription(args.description);
@@ -39,15 +35,13 @@ const resolvers: Resolvers = {
             );
             return {
               ok: true,
-              product,
               error: null
             };
           } else {
-            return { ok: false, product: null, error: "Can't find product" };
+            return { ok: false, error: "Can't find product" };
           }
         } catch (error) {
           return {
-            product: null,
             error,
             ok: false
           };

@@ -67,7 +67,6 @@ const resolvers: Resolvers = {
           totalPages: Math.floor(totalPages / 25)
         };
       } catch (error) {
-        console.log(error);
         return {
           ok: false,
           error,

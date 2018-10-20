@@ -17,7 +17,7 @@ const resolvers: Resolvers = {
         try {
           const notNull: any = cleanNullArgs(args);
           if (notNull.isCompleted) {
-            notNull.completedAt = new Date().toUTCString();
+            notNull.completedAt = String(new Date());
           }
           await Goal.update({ id: args.goalId, maker: user }, { ...notNull });
           return {
