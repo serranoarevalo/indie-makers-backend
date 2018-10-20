@@ -1,7 +1,6 @@
 import { IsUrl } from "class-validator";
 import {
   BeforeInsert,
-  BeforeUpdate,
   Column,
   Entity,
   ManyToOne,
@@ -80,17 +79,34 @@ class Product extends Abstract {
     return this.goals.filter(goal => goal.isCompleted === true);
   }
 
-  @BeforeUpdate()
   @BeforeInsert()
+  beforeInsert() {
+    this.formatFields();
+  }
+
   formatFields() {
-    this.slug = `${this.name.toLowerCase().replace(" ", "-")}-${Math.random()
+    this.slug = this.formatSlug(this.name);
+    this.name = this.formatName(this.name);
+    this.description = this.formatDescription(this.description);
+  }
+
+  saveFormatFields(name: string, description: string) {
+    const newSlug = this.formatSlug(name);
+    const newName = this.formatName(name);
+    const newDescription = this.formatDescription(description);
+    return { newSlug, newName, newDescription };
+  }
+
+  formatSlug = (name: string) =>
+    `${name.toLowerCase().replace(/ /g, "-")}-${Math.random()
       .toString(36)
       .substr(2)}`;
-    this.name = `${this.name[0].toUpperCase()}${this.name.substring(1)}`;
-    this.description = `${this.description[0].toUpperCase()}${this.description.substring(
-      1
-    )}`;
-  }
+
+  formatName = (name: string) =>
+    `${name[0].toUpperCase()}${this.name.substring(1)}`;
+
+  formatDescription = (description: string) =>
+    `${this.description[0].toUpperCase()}${this.description.substring(1)}`;
 }
 
 export default Product;

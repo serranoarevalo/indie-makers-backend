@@ -17,18 +17,37 @@ const resolvers: Resolvers = {
         { req }
       ): Promise<EditProductResponse> => {
         const user: User = req.user;
-        const { productId } = args;
+        const { slug } = args;
         try {
-          await Product.update(
-            { id: productId, maker: user },
-            { ...cleanNullArgs(args) }
-          );
-          return {
-            ok: true,
-            error: null
-          };
+          const product = await Product.findOne({
+            slug,
+            maker: user
+          });
+          if (product) {
+            if (args.name) {
+              product.name = product.formatName(args.name);
+              product.slug = product.formatSlug(args.name);
+            }
+            if (args.description) {
+              product.description = args.description;
+              product.description = product.formatDescription(args.description);
+            }
+            product.save();
+            await Product.update(
+              { slug, maker: user },
+              { ...cleanNullArgs(args) }
+            );
+            return {
+              ok: true,
+              product,
+              error: null
+            };
+          } else {
+            return { ok: false, product: null, error: "Can't find product" };
+          }
         } catch (error) {
           return {
+            product: null,
             error,
             ok: false
           };

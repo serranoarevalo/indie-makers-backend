@@ -1,11 +1,12 @@
 type EditProductResponse {
   ok: Boolean!
   error: String
+  product: Product
 }
 
 type Mutation {
   EditProduct(
-    productId: Int!
+    slug: String!
     name: String
     description: String
     isLaunched: Boolean

@@ -1,3 +1,4 @@
+import { Not } from "typeorm";
 import User from "../../../entities/User";
 import { EditUserMutationArgs, EditUserResponse } from "../../../types/graph";
 import cleanNullArgs from "../../../utils/cleanNull";
@@ -13,7 +14,21 @@ const resolvers = {
       ): Promise<EditUserResponse> => {
         const user: User = req.user;
         try {
-          const notNull = cleanNullArgs(args);
+          const notNull: any = cleanNullArgs(args);
+          if (notNull.username) {
+            const existing = await User.findOne({
+              where: {
+                id: Not(user.id),
+                username: notNull.username
+              }
+            });
+            if (existing) {
+              return {
+                ok: false,
+                error: "Username taken, try a different one"
+              };
+            }
+          }
           await User.update({ id: user.id }, { ...notNull });
           return {
             ok: true,

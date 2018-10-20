@@ -9,6 +9,7 @@ const resolvers: Resolvers = {
       args: GetProductQueryArgs
     ): Promise<GetProductResponse> => {
       const { slug } = args;
+      console.log(slug);
       try {
         const product = await Product.findOne(
           {

@@ -10,7 +10,7 @@ type Mutation {
   EditGoal(goalId: Int!, text: String, isCompleted: Boolean): EditGoalResponse!
   CreateProduct(name: String!, description: String!, needsHelp: Boolean!, website: String, logo: String): CreateProductResponse!
   DeleteProduct(productId: Int!): DeleteProductResponse!
-  EditProduct(productId: Int!, name: String, description: String, isLaunched: Boolean, needsHelp: Boolean, website: String, logo: String): EditProductResponse!
+  EditProduct(slug: String!, name: String, description: String, isLaunched: Boolean, needsHelp: Boolean, website: String, logo: String): EditProductResponse!
   ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
   EditUser(username: String, homepage: String, bio: String): EditUserResponse!
 }
@@ -84,6 +84,7 @@ type DeleteProductResponse {
 type EditProductResponse {
   ok: Boolean!
   error: String
+  product: Product
 }
 
 enum ProductState {
