@@ -28,7 +28,7 @@ const resolvers = {
                 maker: user
               },
               order: {
-                updatedAt: "DESC"
+                createdAt: "DESC"
               }
             });
           return {

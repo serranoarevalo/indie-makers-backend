@@ -46,7 +46,11 @@ class User extends Abstract {
   )
   launchedProductCount: number;
 
-  @Column({ type: "int", default: 0 })
+  @RelationCount((user: User) => user.goals, "goals", qb =>
+    qb.andWhere("goals.isCompleted = :isCompleted", {
+      isCompleted: true
+    })
+  )
   streak: number;
 
   @OneToMany(type => Goal, goal => goal.maker)

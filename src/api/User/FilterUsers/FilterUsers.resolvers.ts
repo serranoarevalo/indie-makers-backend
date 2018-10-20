@@ -1,4 +1,4 @@
-import { getRepository, MoreThan } from "typeorm";
+import { getRepository } from "typeorm";
 import User from "../../../entities/User";
 import {
   FilterUsersQueryArgs,
@@ -12,21 +12,25 @@ const resolvers: Resolvers = {
       _,
       args: FilterUsersQueryArgs
     ): Promise<FilterUsersResponse> => {
-      const { status, page = 0, take } = args;
+      const { status, page = 0, take = 25 } = args;
       const defaultPage = page || 0;
-      let makers: User[];
+      let makers: User[] | null = null;
       let totalPages = 0;
       try {
         switch (status) {
           case "FIRE":
-            [makers, totalPages] = await User.findAndCount({
-              order: {
-                streak: "DESC"
-              },
-              where: { streak: MoreThan(0) },
-              skip: 25 * defaultPage,
-              take: take || 25
-            });
+            [makers, totalPages] = await getRepository(User)
+              .createQueryBuilder("user")
+              .innerJoinAndSelect(
+                "user.goals",
+                "goals",
+                "goals.isCompleted = :isCompleted",
+                {
+                  isCompleted: true
+                }
+              )
+              .orderBy("goals", "DESC")
+              .getManyAndCount();
             break;
           case "SHIPPED":
             [makers, totalPages] = await getRepository(User)

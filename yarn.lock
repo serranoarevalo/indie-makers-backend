@@ -1327,9 +1327,9 @@ fast-json-stable-stringify@^2.0.0:
   integrity sha1-1RQsDK7msRifh9OnYREGT4bIu/I=
 
 figlet@^1.1.1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/figlet/-/figlet-1.2.0.tgz#6c46537378fab649146b5a6143dda019b430b410"
-  integrity sha1-bEZTc3j6tkkUa1phQ92gGbQwtBA=
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/figlet/-/figlet-1.2.1.tgz#48d35df9d9b10b1b3888302e6e57904a0b00509c"
+  integrity sha512-qc8gycfnnfOmfvPl7Fi3JeTbcvdmbZkckyUVGGAM02je7Ookvu+bBfKy1I4FKqTsQHCs3ARJ76ip/k98r+OQuQ==
 
 file-contents@^0.2.4:
   version "0.2.4"
@@ -1936,9 +1936,9 @@ hide-powered-by@1.0.0:
   integrity sha1-SoWtZYgfYoV/xwr3F0oRhNzM4ys=
 
 highlight.js@^9.6.0:
-  version "9.12.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
-  integrity sha1-5tnb5Xy+/mB1HwKvM2GVhwyQwB4=
+  version "9.13.1"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.13.1.tgz#054586d53a6863311168488a0f58d6c505ce641e"
+  integrity sha512-Sc28JNQNDzaH6PORtRLMvif9RSn1mYuOoX3omVjnb0+HbpPygU2ALBI0R/wsiqCb4/fcp07Gdo8g+fhtFrQl6A==
 
 homedir-polyfill@^1.0.0:
   version "1.0.1"
@@ -3967,10 +3967,10 @@ type-is@~1.6.15, type-is@~1.6.16:
     media-typer "0.3.0"
     mime-types "~2.1.18"
 
-typeorm@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.2.7.tgz#4bbbace80dc91b1303be13f42d44ebf01d1b2558"
-  integrity sha512-D7JxOBSqBiLAPu/M/4v15J++3klAWcv5WvYgrfl0iaaGObZJ/8UXm3oTpOtQUHfwJO9Cja8JMiwT9G7dyvwrxg==
+typeorm@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.2.8.tgz#b8f7e0809ad7b2c03c03ff101fadf1b90e4083a3"
+  integrity sha512-MvMwi3Qd1nTBMZsohOy9Pb7eHFXY+YRtPdG90ayfPeC7z2DJXE0gOF8zAKUlxLy1+Dyyq/tOQS+LY/4/6yI/3A==
   dependencies:
     app-root-path "^2.0.1"
     buffer "^5.1.0"
@@ -4214,7 +4214,7 @@ wordwrap@~0.0.2:
 
 wrap-ansi@^2.0.0:
   version "2.1.0"
-  resolved "http://registry.npmjs.org/wrap-ansi/-/wrap-ansi-2.1.0.tgz#d8fc3d284dd05794fe84973caecdd1cf824fdd85"
+  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-2.1.0.tgz#d8fc3d284dd05794fe84973caecdd1cf824fdd85"
   integrity sha1-2Pw9KE3QV5T+hJc8rs3Rz4JP3YU=
   dependencies:
     string-width "^1.0.1"
