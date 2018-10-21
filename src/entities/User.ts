@@ -36,7 +36,7 @@ class User extends Abstract {
   @Column({ type: "text", nullable: true })
   bio: string | null;
 
-  @OneToMany(type => Product, product => product.maker)
+  @OneToMany(type => Product, product => product.maker, { onDelete: "CASCADE" })
   products: Product[];
 
   @RelationCount((user: User) => user.products, "products", qb =>
@@ -53,7 +53,7 @@ class User extends Abstract {
   )
   streak: number;
 
-  @OneToMany(type => Goal, goal => goal.maker)
+  @OneToMany(type => Goal, goal => goal.maker, { onDelete: "CASCADE" })
   goals: Goal[];
 
   get fullName(): string {

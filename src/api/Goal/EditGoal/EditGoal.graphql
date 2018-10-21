@@ -1,6 +1,7 @@
 type EditGoalResponse {
   ok: Boolean!
   error: String
+  isCompleted: Boolean
 }
 
 type Mutation {

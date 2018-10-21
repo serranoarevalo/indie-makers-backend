@@ -23,6 +23,7 @@ type DeleteGoalResponse {
 type EditGoalResponse {
   ok: Boolean!
   error: String
+  isCompleted: Boolean
 }
 
 enum GoalStatus {

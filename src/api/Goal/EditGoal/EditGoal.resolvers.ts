@@ -22,12 +22,14 @@ const resolvers: Resolvers = {
           await Goal.update({ id: args.goalId, maker: user }, { ...notNull });
           return {
             ok: true,
-            error: null
+            error: null,
+            isCompleted: notNull.isCompleted
           };
         } catch (error) {
           return {
             error,
-            ok: false
+            ok: false,
+            isCompleted: null
           };
         }
       }

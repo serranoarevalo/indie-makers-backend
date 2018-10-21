@@ -17,13 +17,16 @@ class Goal extends Abstract {
   @Column({ nullable: true })
   makerId: number;
 
-  @ManyToOne(type => User, user => user.goals)
+  @ManyToOne(type => User, user => user.goals, { onDelete: "CASCADE" })
   maker: User;
 
   @Column({ nullable: true })
   productId: number;
 
-  @ManyToOne(type => Product, product => product.goals, { eager: true })
+  @ManyToOne(type => Product, product => product.goals, {
+    eager: true,
+    onDelete: "CASCADE"
+  })
   product: Product;
 
   @BeforeUpdate()

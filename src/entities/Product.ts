@@ -39,10 +39,10 @@ class Product extends Abstract {
   @Column({ nullable: true })
   makerId: number;
 
-  @ManyToOne(type => User, user => user.products)
+  @ManyToOne(type => User, user => user.products, { onDelete: "CASCADE" })
   maker: User;
 
-  @OneToMany(type => Goal, goal => goal.product)
+  @OneToMany(type => Goal, goal => goal.product, { onDelete: "CASCADE" })
   goals: Goal[];
 
   @RelationCount((product: Product) => product.goals)
@@ -101,7 +101,7 @@ class Product extends Abstract {
   }
 
   formatSlug = () =>
-    `${this.name[0]}${Math.random()
+    `${this.name[0].toLowerCase()}${Math.random()
       .toString(36)
       .substr(2)}`;
 
