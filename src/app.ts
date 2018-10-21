@@ -27,11 +27,7 @@ class App {
     this.app.express.use(cookieParser());
     this.app.express.use(
       cors({
-        origin: [
-          "http://127.0.0.1:3000",
-          /\localtunnel\.me$/,
-          "https://indiemakers.net"
-        ],
+        origin: [/\indiemakers\.net$/, /\localtunnel\.me$/, "127.0.0.1:3000"],
         credentials: true
       })
     );

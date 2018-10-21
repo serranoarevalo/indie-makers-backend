@@ -19,7 +19,8 @@
     "prebuild": "rm -rf dist",
     "build": "tsc",
     "postbuild": "cd src && copy ./api/**/*.graphql ../dist/api",
-    "start": "cd dist && node index.js"
+    "start": "cd dist && node index.js",
+    "tunnel": "lt --port 4000"
   },
   "dependencies": {
     "aws-sdk": "^2.334.0",
