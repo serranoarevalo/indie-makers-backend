@@ -13,7 +13,7 @@
   },
   "scripts": {
     "predev": "yarn run types",
-    "dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql",
+    "dev": "cd src && nodemon --exec NODE_ENV=development ts-node index.ts -e ts,graphql",
     "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts",
     "prebuild": "rm -rf dist",
@@ -26,6 +26,7 @@
     "aws-sdk": "^2.334.0",
     "babel-runtime": "^6.26.0",
     "class-validator": "^0.9.1",
+    "compression": "^1.7.3",
     "cookie-parser": "^1.4.3",
     "copy": "^0.3.2",
     "cors": "^2.8.4",

@@ -1,3 +1,4 @@
+import compression from "compression";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { NextFunction, Response } from "express";
@@ -7,6 +8,8 @@ import logger from "morgan";
 import router from "./router";
 import schema from "./schema";
 import decodeJWT from "./utils/decodeJWT";
+
+const isDev = process.env.NODE_ENV === "development";
 
 class App {
   public app: GraphQLServer;
@@ -24,12 +27,14 @@ class App {
   }
 
   private middlewares = (): void => {
+    this.app.express.use(compression());
     this.app.express.use(cookieParser());
     this.app.express.use(
       cors({
         origin: [
           /\indiemakers\.net$/,
           /\localtunnel\.me$/,
+          /\now\.sh$/,
           "http://127.0.0.1:3000"
         ],
         credentials: true
@@ -38,7 +43,9 @@ class App {
     this.app.express.use(helmet());
     this.app.express.use("/aws", router);
     this.app.express.use(this.jwt);
-    this.app.express.use(logger("dev"));
+    if (isDev) {
+      this.app.express.use(logger("dev"));
+    }
   };
 
   private jwt = async (
