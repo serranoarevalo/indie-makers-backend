@@ -1,4 +1,3 @@
-import { IsUrl } from "class-validator";
 import {
   BeforeInsert,
   Column,
@@ -29,11 +28,9 @@ class Product extends Abstract {
   isFeatured: boolean;
 
   @Column({ type: "text", nullable: true })
-  @IsUrl()
   website: string | null;
 
   @Column({ type: "text", nullable: true })
-  @IsUrl()
   logo: string | null;
 
   @Column({ nullable: true })

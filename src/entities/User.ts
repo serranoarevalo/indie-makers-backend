@@ -1,4 +1,4 @@
-import { IsEmail, IsUrl } from "class-validator";
+import { IsEmail } from "class-validator";
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -27,7 +27,6 @@ class User extends Abstract {
   lastName: string;
 
   @Column({ type: "text", nullable: true })
-  @IsUrl()
   homepage: string;
 
   @Column({ type: "text" })
