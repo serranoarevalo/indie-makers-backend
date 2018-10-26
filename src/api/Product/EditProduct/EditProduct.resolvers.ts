@@ -19,20 +19,15 @@ const resolvers: Resolvers = {
         const user: User = req.user;
         const { slug } = args;
         try {
+          await Product.update(
+            { slug, maker: user },
+            { ...cleanNullArgs(args) }
+          );
           const product = await Product.findOne({
             slug,
             maker: user
           });
           if (product) {
-            if (args.description) {
-              product.description = args.description;
-              product.description = product.formatDescription(args.description);
-            }
-            product.save();
-            await Product.update(
-              { slug, maker: user },
-              { ...cleanNullArgs(args) }
-            );
             return {
               ok: true,
               error: null
