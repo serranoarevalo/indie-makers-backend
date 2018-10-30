@@ -1,4 +1,5 @@
 type Comment {
+  id: Int!
   text: String!
   makerId: Int
   maker: User!

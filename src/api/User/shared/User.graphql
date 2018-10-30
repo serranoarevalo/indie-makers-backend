@@ -17,4 +17,5 @@ type User {
   completedGoals: [Goal]
   createdAt: String!
   updatedAt: String
+  comments: [Comment]
 }

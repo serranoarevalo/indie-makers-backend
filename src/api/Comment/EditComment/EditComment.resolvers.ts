@@ -25,8 +25,8 @@ const resolvers: Resolvers = {
             { text: args.text }
           );
           return {
-            ok: false,
-            error: "Comment not found"
+            ok: true,
+            error: "Comment updated"
           };
         } catch (error) {
           return {

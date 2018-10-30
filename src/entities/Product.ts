@@ -44,7 +44,8 @@ class Product extends Abstract {
   goals: Goal[];
 
   @OneToMany(type => Comment, comment => comment.product, {
-    onDelete: "CASCADE"
+    onDelete: "CASCADE",
+    eager: true
   })
   comments: Comment[];
 
@@ -64,6 +65,9 @@ class Product extends Abstract {
     })
   )
   completedGoalCount: number;
+
+  @RelationCount((product: Product) => product.comments)
+  commentCount: number;
 
   @Column({ nullable: true })
   launchedAt: string;

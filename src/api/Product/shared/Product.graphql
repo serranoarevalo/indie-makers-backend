@@ -18,4 +18,6 @@ type Product {
   slug: String!
   pendingGoals: [Goal]
   completedGoals: [Goal]
+  comments: [Comment]
+  commentCount: Int!
 }

@@ -20,11 +20,14 @@ const resolvers: Resolvers = {
         const { commentId, text, productId } = args;
         try {
           let parentComment: Comment | undefined;
+          let product: Product | undefined;
           if (commentId) {
             parentComment = await Comment.findOne({ id: commentId });
           }
-          const product = await Product.findOne({ id: productId });
-          if (product) {
+          if (productId) {
+            product = await Product.findOne({ id: productId });
+          }
+          if (product || parentComment) {
             const newComment = await Comment.create({
               text,
               product,
