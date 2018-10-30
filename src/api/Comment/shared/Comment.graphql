@@ -1,0 +1,11 @@
+type Comment {
+  text: String!
+  makerId: Int
+  maker: User!
+  parentComment: Comment
+  childComments: [Comment]!
+  productId: Int
+  product: Product!
+  createdAt: String!
+  updatedAt: String
+}

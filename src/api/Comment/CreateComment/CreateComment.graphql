@@ -1,0 +1,13 @@
+type CreateCommentResponse {
+  ok: Boolean!
+  error: String
+  comment: Comment
+}
+
+type Mutation {
+  CreateComment(
+    text: String!
+    productId: Int!
+    commentId: Int
+  ): CreateCommentResponse!
+}

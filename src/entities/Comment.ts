@@ -8,14 +8,18 @@ class Comment extends Abstract {
   @Column({ type: "text" })
   text: string;
 
-  @Column({ nullable: true })
-  makerId: number;
-
-  @ManyToOne(type => Comment, category => category.childComments)
+  @ManyToOne(type => Comment, category => category.childComments, {
+    nullable: true
+  })
   parentComment: Comment;
 
-  @OneToMany(type => Comment, category => category.parentComment)
+  @OneToMany(type => Comment, category => category.parentComment, {
+    nullable: true
+  })
   childComments: Comment[];
+
+  @Column({ nullable: true })
+  makerId: number;
 
   @ManyToOne(type => User, user => user.comments, { onDelete: "CASCADE" })
   maker: User;

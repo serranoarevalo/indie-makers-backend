@@ -1,0 +1,8 @@
+type EditCommentResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  EditComment(comentId: Int!, text: String!): EditCommentResponse!
+}
