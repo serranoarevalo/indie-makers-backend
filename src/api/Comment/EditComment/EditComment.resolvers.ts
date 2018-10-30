@@ -20,8 +20,7 @@ const resolvers: Resolvers = {
           await Comment.update(
             {
               maker: user,
-              text: args.text,
-              id: args.comentId
+              id: args.commentId
             },
             { text: args.text }
           );
