@@ -7,6 +7,7 @@ import {
   RelationCount
 } from "typeorm";
 import Abstract from "./Abstract";
+import Comment from "./Comment";
 import Goal from "./Goal";
 import User from "./User";
 
@@ -41,6 +42,11 @@ class Product extends Abstract {
 
   @OneToMany(type => Goal, goal => goal.product, { onDelete: "CASCADE" })
   goals: Goal[];
+
+  @OneToMany(type => Comment, comment => comment.product, {
+    onDelete: "CASCADE"
+  })
+  comments: Comment[];
 
   @RelationCount((product: Product) => product.goals)
   goalCount: number;

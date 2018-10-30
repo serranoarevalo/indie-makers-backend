@@ -8,6 +8,7 @@ import {
   RelationCount
 } from "typeorm";
 import Abstract from "./Abstract";
+import Comment from "./Comment";
 import Goal from "./Goal";
 import Product from "./Product";
 
@@ -54,6 +55,9 @@ class User extends Abstract {
 
   @OneToMany(type => Goal, goal => goal.maker, { onDelete: "CASCADE" })
   goals: Goal[];
+
+  @OneToMany(type => Comment, comment => comment.maker, { onDelete: "CASCADE" })
+  comments: Comment[];
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
