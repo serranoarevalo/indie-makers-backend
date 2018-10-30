@@ -14,7 +14,9 @@ const resolvers: Resolvers = {
           {
             slug
           },
-          { relations: ["maker", "goals", "comments"] }
+          {
+            relations: ["maker", "goals", "comments", "comments.childComments"]
+          }
         );
         if (product) {
           return {

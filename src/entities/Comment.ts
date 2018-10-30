@@ -9,7 +9,8 @@ class Comment extends Abstract {
   text: string;
 
   @ManyToOne(type => Comment, category => category.childComments, {
-    nullable: true
+    nullable: true,
+    onDelete: "CASCADE"
   })
   parentComment: Comment;
 
@@ -28,7 +29,6 @@ class Comment extends Abstract {
   productId: number;
 
   @ManyToOne(type => Product, product => product.comments, {
-    eager: true,
     onDelete: "CASCADE"
   })
   product: Product;

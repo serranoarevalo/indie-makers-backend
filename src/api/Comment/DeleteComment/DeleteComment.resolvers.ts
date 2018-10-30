@@ -25,7 +25,7 @@ const resolvers: Resolvers = {
           );
           if (comment) {
             if (
-              comment.product.makerId === user.id ||
+              (comment.product && comment.product.makerId === user.id) ||
               comment.makerId === user.id
             ) {
               comment.remove();

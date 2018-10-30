@@ -44,8 +44,7 @@ class Product extends Abstract {
   goals: Goal[];
 
   @OneToMany(type => Comment, comment => comment.product, {
-    onDelete: "CASCADE",
-    eager: true
+    onDelete: "CASCADE"
   })
   comments: Comment[];
 
