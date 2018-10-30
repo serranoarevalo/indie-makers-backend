@@ -17,34 +17,18 @@ const resolvers: Resolvers = {
       ): Promise<EditCommentResponse> => {
         const user: User = req.user;
         try {
-          const comment = await Comment.findOne(
+          await Comment.update(
             {
+              maker: user,
+              text: args.text,
               id: args.comentId
             },
-            { relations: ["product"] }
+            { text: args.text }
           );
-          if (comment) {
-            if (
-              comment.product.makerId === user.id ||
-              comment.makerId === user.id
-            ) {
-              comment.remove();
-              return {
-                ok: true,
-                error: null
-              };
-            } else {
-              return {
-                ok: false,
-                error: "Cant delete"
-              };
-            }
-          } else {
-            return {
-              ok: false,
-              error: "Comment not found"
-            };
-          }
+          return {
+            ok: false,
+            error: "Comment not found"
+          };
         } catch (error) {
           return {
             error,

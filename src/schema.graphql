@@ -7,7 +7,7 @@ type CreateCommentResponse {
 type Mutation {
   CreateComment(text: String!, productId: Int!, commentId: Int): CreateCommentResponse!
   DeleteComment(commentId: Int!): DeleteCommentResponse!
-  EditComment(comentId: Int!, text: String!): EditCommentResponse!
+  EditComment(commentId: Int!, text: String!): EditCommentResponse!
   CreateGoal(text: String!, productId: Int!): CreateGoalResponse!
   DeleteGoal(goalId: Int!): DeleteGoalResponse!
   EditGoal(goalId: Int!, text: String, isCompleted: Boolean): EditGoalResponse!

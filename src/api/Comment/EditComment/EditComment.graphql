@@ -4,5 +4,5 @@ type EditCommentResponse {
 }
 
 type Mutation {
-  EditComment(comentId: Int!, text: String!): EditCommentResponse!
+  EditComment(commentId: Int!, text: String!): EditCommentResponse!
 }
