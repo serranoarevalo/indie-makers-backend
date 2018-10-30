@@ -1,10 +1,13 @@
-type CreateGoalResponse {
+type CreateCommentResponse {
   ok: Boolean!
   error: String
-  goal: Goal
+  comment: Comment
 }
 
 type Mutation {
+  CreateComment(text: String!, productId: Int!, commentId: Int): CreateCommentResponse!
+  DeleteComment(commentId: Int!): DeleteCommentResponse!
+  EditComment(comentId: Int!, text: String!): EditCommentResponse!
   CreateGoal(text: String!, productId: Int!): CreateGoalResponse!
   DeleteGoal(goalId: Int!): DeleteGoalResponse!
   EditGoal(goalId: Int!, text: String, isCompleted: Boolean): EditGoalResponse!
@@ -13,6 +16,34 @@ type Mutation {
   EditProduct(slug: String!, name: String, description: String, isLaunched: Boolean, needsHelp: Boolean, website: String, logo: String): EditProductResponse!
   ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
   EditUser(username: String, homepage: String, bio: String): EditUserResponse!
+}
+
+type DeleteCommentResponse {
+  ok: Boolean!
+  error: String
+}
+
+type EditCommentResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Comment {
+  text: String!
+  makerId: Int
+  maker: User!
+  parentComment: Comment
+  childComments: [Comment]!
+  productId: Int
+  product: Product!
+  createdAt: String!
+  updatedAt: String
+}
+
+type CreateGoalResponse {
+  ok: Boolean!
+  error: String
+  goal: Goal
 }
 
 type DeleteGoalResponse {
