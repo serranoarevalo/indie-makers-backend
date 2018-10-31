@@ -10,6 +10,7 @@ import Abstract from "./Abstract";
 import Comment from "./Comment";
 import Goal from "./Goal";
 import User from "./User";
+import Vote from "./Vote";
 
 @Entity()
 class Product extends Abstract {
@@ -47,6 +48,11 @@ class Product extends Abstract {
     onDelete: "CASCADE"
   })
   comments: Comment[];
+
+  @OneToMany(type => Vote, vote => vote.product, {
+    onDelete: "CASCADE"
+  })
+  votes: Vote[];
 
   @RelationCount((product: Product) => product.goals)
   goalCount: number;

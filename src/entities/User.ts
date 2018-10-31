@@ -11,6 +11,7 @@ import Abstract from "./Abstract";
 import Comment from "./Comment";
 import Goal from "./Goal";
 import Product from "./Product";
+import Vote from "./Vote";
 
 @Entity()
 class User extends Abstract {
@@ -58,6 +59,11 @@ class User extends Abstract {
 
   @OneToMany(type => Comment, comment => comment.maker, { onDelete: "CASCADE" })
   comments: Comment[];
+
+  @OneToMany(type => Vote, vote => vote.maker, {
+    onDelete: "CASCADE"
+  })
+  votes: Vote[];
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
