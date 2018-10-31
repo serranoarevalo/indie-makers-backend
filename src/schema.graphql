@@ -5,7 +5,7 @@ type CreateCommentResponse {
 }
 
 type Mutation {
-  CreateComment(text: String!, productId: Int!, commentId: Int): CreateCommentResponse!
+  CreateComment(text: String!, productId: Int, commentId: Int): CreateCommentResponse!
   DeleteComment(commentId: Int!): DeleteCommentResponse!
   EditComment(commentId: Int!, text: String!): EditCommentResponse!
   CreateGoal(text: String!, productId: Int!): CreateGoalResponse!
@@ -29,6 +29,7 @@ type EditCommentResponse {
 }
 
 type Comment {
+  id: Int!
   text: String!
   makerId: Int
   maker: User!
@@ -172,6 +173,8 @@ type Product {
   slug: String!
   pendingGoals: [Goal]
   completedGoals: [Goal]
+  comments: [Comment]
+  commentCount: Int!
 }
 
 type CheckUsernameResponse {
@@ -221,7 +224,7 @@ type MeResponse {
 type User {
   id: Int!
   email: String
-  username: String
+  username: String!
   firstName: String!
   lastName: String!
   homepage: String
@@ -237,4 +240,5 @@ type User {
   completedGoals: [Goal]
   createdAt: String!
   updatedAt: String
+  comments: [Comment]
 }

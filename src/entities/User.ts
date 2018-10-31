@@ -19,7 +19,7 @@ class User extends Abstract {
   email: string | null;
 
   @Column({ type: "text", unique: true, nullable: true })
-  username: string | null;
+  username: string;
 
   @Column({ type: "text", nullable: true })
   firstName: string;

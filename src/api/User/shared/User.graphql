@@ -1,7 +1,7 @@
 type User {
   id: Int!
   email: String
-  username: String
+  username: String!
   firstName: String!
   lastName: String!
   homepage: String

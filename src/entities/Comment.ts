@@ -22,7 +22,10 @@ class Comment extends Abstract {
   @Column({ nullable: true })
   makerId: number;
 
-  @ManyToOne(type => User, user => user.comments, { onDelete: "CASCADE" })
+  @ManyToOne(type => User, user => user.comments, {
+    onDelete: "CASCADE",
+    eager: true
+  })
   maker: User;
 
   @Column({ nullable: true })

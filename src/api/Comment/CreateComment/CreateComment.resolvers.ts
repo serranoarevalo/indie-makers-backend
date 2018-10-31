@@ -22,6 +22,7 @@ const resolvers: Resolvers = {
           let parentComment: Comment | undefined;
           let product: Product | undefined;
           if (commentId) {
+            await Comment.find({ relations: ["maker"] });
             parentComment = await Comment.findOne({ id: commentId });
           }
           if (productId) {
@@ -34,11 +35,19 @@ const resolvers: Resolvers = {
               maker: user,
               parentComment
             }).save();
-            return {
-              ok: true,
-              error: null,
-              comment: newComment
-            };
+            if (newComment) {
+              return {
+                ok: true,
+                error: null,
+                comment: newComment
+              };
+            } else {
+              return {
+                ok: false,
+                error: `Can't create comment`,
+                comment: null
+              };
+            }
           } else {
             return {
               ok: false,
