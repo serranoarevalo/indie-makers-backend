@@ -20,4 +20,6 @@ type Product {
   completedGoals: [Goal]
   comments: [Comment]
   commentCount: Int!
+  voteCount: Int!
+  votes: [Vote]
 }

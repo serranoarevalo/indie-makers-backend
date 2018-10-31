@@ -1,0 +1,9 @@
+type Comment {
+  id: Int!
+  makerId: Int
+  maker: User!
+  productId: Int
+  product: Product!
+  createdAt: String!
+  updatedAt: String
+}

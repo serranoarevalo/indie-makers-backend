@@ -16,6 +16,7 @@ type Mutation {
   EditProduct(slug: String!, name: String, description: String, isLaunched: Boolean, needsHelp: Boolean, website: String, logo: String): EditProductResponse!
   ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
   EditUser(username: String, homepage: String, bio: String): EditUserResponse!
+  ToggleVote(productId: Int!): ToggleVoteResponse!
 }
 
 type DeleteCommentResponse {
@@ -35,6 +36,13 @@ type Comment {
   maker: User!
   parentComment: Comment
   childComments: [Comment]!
+  productId: Int
+  product: Product!
+  createdAt: String!
+  updatedAt: String
+  id: Int!
+  makerId: Int
+  maker: User!
   productId: Int
   product: Product!
   createdAt: String!
@@ -241,4 +249,9 @@ type User {
   createdAt: String!
   updatedAt: String
   comments: [Comment]
+}
+
+type ToggleVoteResponse {
+  ok: Boolean!
+  error: String
 }

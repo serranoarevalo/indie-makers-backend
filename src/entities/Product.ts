@@ -74,6 +74,9 @@ class Product extends Abstract {
   @RelationCount((product: Product) => product.comments)
   commentCount: number;
 
+  @RelationCount((product: Product) => product.votes)
+  voteCount: number;
+
   @Column({ nullable: true })
   launchedAt: string;
 

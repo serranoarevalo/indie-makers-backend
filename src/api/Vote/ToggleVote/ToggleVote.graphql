@@ -1,0 +1,8 @@
+type ToggleVoteResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  ToggleVote(productId: Int!): ToggleVoteResponse!
+}

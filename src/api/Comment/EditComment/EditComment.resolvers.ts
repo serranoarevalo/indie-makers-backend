@@ -26,7 +26,7 @@ const resolvers: Resolvers = {
           );
           return {
             ok: true,
-            error: "Comment updated"
+            error: null
           };
         } catch (error) {
           return {
