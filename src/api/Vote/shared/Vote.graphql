@@ -1,4 +1,4 @@
-type Comment {
+type Vote {
   id: Int!
   makerId: Int
   maker: User!

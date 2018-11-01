@@ -40,13 +40,6 @@ type Comment {
   product: Product!
   createdAt: String!
   updatedAt: String
-  id: Int!
-  makerId: Int
-  maker: User!
-  productId: Int
-  product: Product!
-  createdAt: String!
-  updatedAt: String
 }
 
 type CreateGoalResponse {
@@ -159,6 +152,7 @@ type GetProductResponse {
   ok: Boolean!
   error: String
   product: Product
+  clapped: Boolean
 }
 
 type Product {
@@ -183,6 +177,8 @@ type Product {
   completedGoals: [Goal]
   comments: [Comment]
   commentCount: Int!
+  voteCount: Int!
+  votes: [Vote]
 }
 
 type CheckUsernameResponse {
@@ -251,7 +247,18 @@ type User {
   comments: [Comment]
 }
 
+type Vote {
+  id: Int!
+  makerId: Int
+  maker: User!
+  productId: Int
+  product: Product!
+  createdAt: String!
+  updatedAt: String
+}
+
 type ToggleVoteResponse {
   ok: Boolean!
   error: String
+  add: Boolean!
 }

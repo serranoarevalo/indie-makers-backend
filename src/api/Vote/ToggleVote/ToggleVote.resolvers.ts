@@ -24,6 +24,11 @@ const resolvers: Resolvers = {
           });
           if (existingVote) {
             existingVote.remove();
+            return {
+              ok: true,
+              error: null,
+              add: false
+            };
           } else {
             const product = await Product.findOne({ id: args.productId });
             if (product) {
@@ -31,21 +36,24 @@ const resolvers: Resolvers = {
                 maker: user,
                 product
               }).save();
+              return {
+                ok: true,
+                error: null,
+                add: true
+              };
             } else {
               return {
                 ok: false,
-                error: `Product not found`
+                error: `Product not found`,
+                add: false
               };
             }
           }
-          return {
-            ok: true,
-            error: null
-          };
         } catch (error) {
           return {
             error,
-            ok: false
+            ok: false,
+            add: false
           };
         }
       }

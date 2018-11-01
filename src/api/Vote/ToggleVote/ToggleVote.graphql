@@ -1,6 +1,7 @@
 type ToggleVoteResponse {
   ok: Boolean!
   error: String
+  add: Boolean!
 }
 
 type Mutation {

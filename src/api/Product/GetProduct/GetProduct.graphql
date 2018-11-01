@@ -2,6 +2,7 @@ type GetProductResponse {
   ok: Boolean!
   error: String
   product: Product
+  clapped: Boolean!
 }
 
 type Query {
