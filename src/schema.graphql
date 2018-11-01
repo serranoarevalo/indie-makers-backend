@@ -1,9 +1,11 @@
-type DeleteCommentResponse {
+type CreateCommentResponse {
   ok: Boolean!
   error: String
+  comment: Comment
 }
 
 type Mutation {
+  CreateComment(text: String!, productId: Int, commentId: Int): CreateCommentResponse!
   DeleteComment(commentId: Int!): DeleteCommentResponse!
   EditComment(commentId: Int!, text: String!): EditCommentResponse!
   CreateGoal(text: String!, productId: Int!): CreateGoalResponse!
@@ -15,6 +17,11 @@ type Mutation {
   ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!
   EditUser(username: String, homepage: String, bio: String): EditUserResponse!
   ToggleVote(productId: Int!): ToggleVoteResponse!
+}
+
+type DeleteCommentResponse {
+  ok: Boolean!
+  error: String
 }
 
 type EditCommentResponse {
@@ -146,7 +153,6 @@ type GetProductResponse {
   error: String
   product: Product
   clapped: Boolean!
-  comments: [Comment]
 }
 
 type Product {
