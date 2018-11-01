@@ -1,3 +1,5 @@
+import { getTreeRepository } from "typeorm";
+import Comment from "../../../entities/Comment";
 import Product from "../../../entities/Product";
 import User from "../../../entities/User";
 import Vote from "../../../entities/Vote";
@@ -19,26 +21,37 @@ const resolvers: Resolvers = {
             slug
           },
           {
-            relations: ["maker", "goals", "comments", "comments.childComments"]
+            relations: ["maker", "goals", "comments"]
           }
         );
+
         if (product) {
           let vote: Vote | undefined;
           if (user) {
             vote = await Vote.findOne({ maker: user, product });
           }
+          const comments: Comment[] = [];
+          const commentRepository = await getTreeRepository(Comment);
+          for await (const comment of product.comments) {
+            const commentTree = await commentRepository.findDescendantsTree(
+              comment
+            );
+            comments.push(commentTree);
+          }
           return {
             product,
             error: null,
             ok: true,
-            clapped: vote !== undefined
+            clapped: vote !== undefined,
+            comments
           };
         } else {
           return {
             product: null,
             error: "Product not found",
             ok: false,
-            clapped: false
+            clapped: false,
+            comments: null
           };
         }
       } catch (error) {
@@ -46,7 +59,8 @@ const resolvers: Resolvers = {
           error,
           ok: false,
           product: null,
-          clapped: false
+          clapped: false,
+          comments: null
         };
       }
     }

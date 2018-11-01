@@ -1,22 +1,25 @@
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  Tree,
+  TreeChildren,
+  TreeParent
+} from "typeorm";
 import Abstract from "./Abstract";
 import Product from "./Product";
 import User from "./User";
 
 @Entity()
+@Tree("nested-set")
 class Comment extends Abstract {
   @Column({ type: "text" })
   text: string;
 
-  @ManyToOne(type => Comment, category => category.childComments, {
-    nullable: true,
-    onDelete: "CASCADE"
-  })
+  @TreeParent()
   parentComment: Comment;
 
-  @OneToMany(type => Comment, category => category.parentComment, {
-    nullable: true
-  })
+  @TreeChildren()
   childComments: Comment[];
 
   @Column({ nullable: true })

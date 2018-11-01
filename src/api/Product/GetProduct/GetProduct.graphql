@@ -3,6 +3,7 @@ type GetProductResponse {
   error: String
   product: Product
   clapped: Boolean!
+  comments: [Comment]
 }
 
 type Query {
