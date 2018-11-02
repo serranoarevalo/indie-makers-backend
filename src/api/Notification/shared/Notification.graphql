@@ -1,0 +1,8 @@
+type Notification {
+  id: String!
+  actor: String!
+  target: String!
+  verb: String!
+  object: String!
+  time: String!
+}

@@ -75,6 +75,7 @@ type FilterGoalsResponse {
 type Query {
   FilterGoals(status: GoalStatus!, page: Int, take: Int): FilterGoalsResponse!
   GetLatestGoals(take: Int, page: Int): GetLatestGoalsResponse!
+  GetNotifications: GetNotificationsResponse!
   FilterProducts(status: ProductState!, page: Int, take: Int): FilterProductsResponse!
   GetAllProducts: GetAllProductsResponse!
   GetLatestProducts(take: Int, page: Int): GetLatestProductsResponse!
@@ -102,6 +103,22 @@ type Goal {
   maker: User
   productId: Int!
   product: Product
+}
+
+type GetNotificationsResponse {
+  ok: Boolean!
+  error: String
+  notifications: [Notification]
+  unseen: Int
+}
+
+type Notification {
+  id: String!
+  actor: String!
+  target: String!
+  verb: String!
+  object: String!
+  time: String!
 }
 
 type CreateProductResponse {

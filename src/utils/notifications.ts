@@ -46,3 +46,10 @@ export const comment = (
 ) => {
   addActivity("comment", target, creator, slug, title);
 };
+
+export const getFeed = async (username: string) => {
+  const fUsername = username.replace(/\./g, "-");
+  const userFeed = client.feed("notification", fUsername);
+  const feed = await userFeed.get({ limit: 30 });
+  return feed;
+};

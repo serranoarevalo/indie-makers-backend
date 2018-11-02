@@ -1,0 +1,10 @@
+type GetNotificationsResponse {
+  ok: Boolean!
+  error: String
+  notifications: [Notification]
+  unseen: Int
+}
+
+type Query {
+  GetNotifications: GetNotificationsResponse!
+}
