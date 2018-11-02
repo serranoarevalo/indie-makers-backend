@@ -6,6 +6,7 @@ import {
   ToggleVoteResponse
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
+import { clap } from "../../../utils/notifications";
 import privateResolver from "../../../utils/privateResolver";
 
 const resolvers: Resolvers = {
@@ -30,12 +31,21 @@ const resolvers: Resolvers = {
               add: false
             };
           } else {
-            const product = await Product.findOne({ id: args.productId });
+            const product = await Product.findOne(
+              { id: args.productId },
+              { relations: ["maker"] }
+            );
             if (product) {
               await Vote.create({
                 maker: user,
                 product
               }).save();
+              clap(
+                product.maker.username,
+                user.username,
+                product.slug,
+                product.name
+              );
               return {
                 ok: true,
                 error: null,

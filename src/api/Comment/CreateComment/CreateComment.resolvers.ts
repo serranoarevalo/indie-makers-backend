@@ -6,6 +6,7 @@ import {
   CreateCommentResponse
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
+import { comment } from "../../../utils/notifications";
 import privateResolver from "../../../utils/privateResolver";
 
 const resolvers: Resolvers = {
@@ -22,10 +23,18 @@ const resolvers: Resolvers = {
           let parentComment: Comment | undefined;
           let product: Product | undefined;
           if (commentId) {
-            parentComment = await Comment.findOne({ id: commentId });
+            parentComment = await Comment.findOne(
+              { id: commentId },
+              { relations: ["product"] }
+            );
           }
           if (productId) {
-            product = await Product.findOne({ id: productId });
+            product = await Product.findOne(
+              { id: productId },
+              { relations: ["maker"] }
+            );
+          } else if (parentComment) {
+            product = parentComment.product;
           }
           if (product || parentComment) {
             const newComment = await Comment.create({
@@ -34,6 +43,14 @@ const resolvers: Resolvers = {
               maker: user,
               parentComment
             }).save();
+            if (product) {
+              comment(
+                product.maker.username,
+                user.username,
+                product.slug,
+                product.name
+              );
+            }
             if (newComment) {
               return {
                 ok: true,
