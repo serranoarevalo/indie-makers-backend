@@ -11,6 +11,7 @@ type Mutation {
   CreateGoal(text: String!, productId: Int!): CreateGoalResponse!
   DeleteGoal(goalId: Int!): DeleteGoalResponse!
   EditGoal(goalId: Int!, text: String, isCompleted: Boolean): EditGoalResponse!
+  MarkAsRead(notificationId: String!): MarkAsReadResponse!
   CreateProduct(name: String!, description: String!, needsHelp: Boolean!, website: String, logo: String): CreateProductResponse!
   DeleteProduct(productId: Int!): DeleteProductResponse!
   EditProduct(slug: String!, name: String, description: String, isLaunched: Boolean, needsHelp: Boolean, website: String, logo: String): EditProductResponse!
@@ -110,6 +111,10 @@ type GetNotificationsResponse {
   error: String
   notifications: [Notification]
   unseen: Int
+}
+
+type MarkAsReadResponse {
+  ok: Boolean!
 }
 
 type Notification {

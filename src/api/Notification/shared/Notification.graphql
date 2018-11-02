@@ -5,4 +5,5 @@ type Notification {
   verb: String!
   object: String!
   time: String!
+  isSeen: Boolean!
 }

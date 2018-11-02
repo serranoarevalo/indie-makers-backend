@@ -1,0 +1,7 @@
+type MarkAsReadResponse {
+  ok: Boolean!
+}
+
+type Mutation {
+  MarkAsRead: MarkAsReadResponse!
+}
