@@ -33,8 +33,6 @@ const resolvers: Resolvers = {
               { id: productId },
               { relations: ["maker"] }
             );
-          } else if (parentComment) {
-            product = parentComment.product;
           }
           if (product || parentComment) {
             const newComment = await Comment.create({
@@ -44,12 +42,18 @@ const resolvers: Resolvers = {
               parentComment
             }).save();
             if (product) {
-              comment(
-                product.maker.username,
-                user.username,
-                product.slug,
-                product.name
-              );
+              try {
+                if (product.maker.username !== user.username) {
+                  comment(
+                    product.maker.username,
+                    user.username,
+                    product.slug,
+                    product.name
+                  );
+                }
+              } catch (error) {
+                console.log(error);
+              }
             }
             if (newComment) {
               return {

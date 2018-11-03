@@ -50,6 +50,9 @@
   "now": {
     "name": "indie-makers-server",
     "dotenv": ".env.production",
-    "alias": "indie-api.now.sh"
+    "alias": "indie-api.now.sh",
+    "engines": {
+      "node": "10.x.x"
+    }
   }
 }

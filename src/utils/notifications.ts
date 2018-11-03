@@ -58,4 +58,5 @@ export const markAsRead = async (username: string) => {
   const fUsername = username.replace(/\./g, "-");
   const userFeed = client.feed("notification", fUsername);
   await userFeed.get({ mark_read: true });
+  await userFeed.get({ mark_seen: true });
 };

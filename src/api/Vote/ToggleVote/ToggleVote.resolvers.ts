@@ -40,12 +40,16 @@ const resolvers: Resolvers = {
                 maker: user,
                 product
               }).save();
-              clap(
-                product.maker.username,
-                user.username,
-                product.slug,
-                product.name
-              );
+              try {
+                clap(
+                  product.maker.username,
+                  user.username,
+                  product.slug,
+                  product.name
+                );
+              } catch (error) {
+                console.log(error);
+              }
               return {
                 ok: true,
                 error: null,
