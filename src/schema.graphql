@@ -12,7 +12,7 @@ type Mutation {
   DeleteGoal(goalId: Int!): DeleteGoalResponse!
   EditGoal(goalId: Int!, text: String, isCompleted: Boolean): EditGoalResponse!
   MarkAsRead: MarkAsReadResponse!
-  CreateProduct(name: String!, description: String!, needsHelp: Boolean!, website: String, logo: String): CreateProductResponse!
+  CreateProduct(name: String!, description: String!, needsHelp: Boolean!, isLaunched: Boolean!, website: String, logo: String): CreateProductResponse!
   DeleteProduct(productId: Int!): DeleteProductResponse!
   EditProduct(slug: String!, name: String, description: String, isLaunched: Boolean, needsHelp: Boolean, website: String, logo: String): EditProductResponse!
   ConnectFB(firstName: String!, lastName: String!, email: String, fbId: String!): ConnectFBResponse!

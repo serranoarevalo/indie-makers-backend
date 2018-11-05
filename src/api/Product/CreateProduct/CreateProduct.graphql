@@ -9,6 +9,7 @@ type Mutation {
     name: String!
     description: String!
     needsHelp: Boolean!
+    isLaunched: Boolean!
     website: String
     logo: String
   ): CreateProductResponse!
